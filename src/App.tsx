@@ -254,8 +254,13 @@ export default function App() {
           </div>
         </div>
 
-        {/* Experience Block - Now a click to open modal */}
+        {/* Work Experience */}
         <div className="snap-element min-h-[50vh] py-24 px-6 md:px-12 flex flex-col justify-center max-w-7xl mx-auto w-full">
+          <div className="flex justify-between items-end mb-12 border-b border-current pb-4">
+            <h2 className="font-display text-4xl md:text-6xl font-bold uppercase tracking-tight leading-none">Work<br/>Experience</h2>
+            <span className="font-mono text-xs md:text-sm uppercase opacity-80">Professional</span>
+          </div>
+
           <div 
             className="p-8 md:p-12 border border-current rounded-[2rem] hover:bg-[#F4F1EA] hover:text-[#1C1B1A] transition-colors duration-500 cursor-pointer group"
             onMouseEnter={handleHoverEnter} 
@@ -285,22 +290,31 @@ export default function App() {
 
         {/* Skills Block */}
         <div className="snap-element min-h-[50vh] py-24 px-6 md:px-12 flex flex-col justify-center max-w-7xl mx-auto w-full">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-12">
+          <div className="flex justify-between items-end mb-12 border-b border-current pb-4">
+            <h2 className="font-display text-4xl md:text-6xl font-bold uppercase tracking-tight leading-none">Technical<br/>Skills</h2>
+            <span className="font-mono text-xs md:text-sm uppercase opacity-80">Core Competencies</span>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-12">
             <div>
-              <h4 className="text-xs font-mono uppercase tracking-widest mb-4 opacity-50">01 / Systems</h4>
-              <p className="text-xl md:text-2xl font-display font-bold uppercase tracking-tight">Linux, Bash, Docker, Kubernetes</p>
+              <h4 className="text-xs font-mono uppercase tracking-widest mb-4 opacity-50">01 / Systems & Infrastructure</h4>
+              <p className="text-xl md:text-2xl font-display font-bold uppercase tracking-tight">Linux, Shell Scripting (Bash), Docker, Kubernetes (Basics), Networking (TCP/IP)</p>
             </div>
             <div>
-              <h4 className="text-xs font-mono uppercase tracking-widest mb-4 opacity-50">02 / Languages</h4>
-              <p className="text-xl md:text-2xl font-display font-bold uppercase tracking-tight">Python, C, C++, JavaScript</p>
+              <h4 className="text-xs font-mono uppercase tracking-widest mb-4 opacity-50">02 / Programming Languages</h4>
+              <p className="text-xl md:text-2xl font-display font-bold uppercase tracking-tight">Python, C, C++, JavaScript, Kotlin</p>
             </div>
             <div>
-              <h4 className="text-xs font-mono uppercase tracking-widest mb-4 opacity-50">03 / Web & Data</h4>
-              <p className="text-xl md:text-2xl font-display font-bold uppercase tracking-tight">FastAPI, Flask, MSSQL, MongoDB</p>
+              <h4 className="text-xs font-mono uppercase tracking-widest mb-4 opacity-50">03 / Web Technologies & DBs</h4>
+              <p className="text-xl md:text-2xl font-display font-bold uppercase tracking-tight">FastAPI, Flask, HTML, CSS, MSSQL, MongoDB</p>
             </div>
             <div>
-              <h4 className="text-xs font-mono uppercase tracking-widest mb-4 opacity-50">04 / AI & ML</h4>
-              <p className="text-xl md:text-2xl font-display font-bold uppercase tracking-tight">TensorFlow, NLP, XGBoost</p>
+              <h4 className="text-xs font-mono uppercase tracking-widest mb-4 opacity-50">04 / AI & ML Frameworks</h4>
+              <p className="text-xl md:text-2xl font-display font-bold uppercase tracking-tight">TensorFlow, NLP, CatBoost, XGBoost, scikit-learn</p>
+            </div>
+            <div>
+              <h4 className="text-xs font-mono uppercase tracking-widest mb-4 opacity-50">05 / Tools & Technologies</h4>
+              <p className="text-xl md:text-2xl font-display font-bold uppercase tracking-tight">Git/GitHub, Android Studio, Wear OS</p>
             </div>
           </div>
         </div>
