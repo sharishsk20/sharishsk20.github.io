@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Lenis from 'lenis';
-import { ArrowDownRight, ArrowUpRight, Github, Linkedin, Mail } from 'lucide-react';
+import { ArrowDownRight, ArrowUpRight, Github, Linkedin, Mail, FileText } from 'lucide-react';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -82,16 +82,20 @@ export default function App() {
     });
 
     // Fade out hero subtext on scroll
-    gsap.to('.hero-subtext', {
-      opacity: 0,
-      y: -50,
-      scrollTrigger: {
-        trigger: heroRef.current,
-        start: 'top top',
-        end: 'center top',
-        scrub: true
+    gsap.fromTo('.hero-subtext', 
+      { opacity: 1, y: 0 },
+      {
+        opacity: 0,
+        y: -50,
+        immediateRender: false,
+        scrollTrigger: {
+          trigger: heroRef.current,
+          start: 'top top',
+          end: 'center top',
+          scrub: true
+        }
       }
-    });
+    );
 
     // GLOBAL SNAPPING ENGINE - Creating distinct segmented sections
     let mm = gsap.matchMedia();
@@ -380,14 +384,17 @@ export default function App() {
           </div>
           
           <div className="flex gap-6 md:gap-8 flex-wrap justify-center pointer-events-auto">
-            <a href="#" onMouseEnter={handleHoverEnter} onMouseLeave={handleHoverLeave} className="flex items-center gap-2 font-mono text-xs md:text-sm uppercase tracking-widest hover:opacity-60 transition-opacity">
+            <a href="https://github.com/sharishsk20" target="_blank" rel="noreferrer" onMouseEnter={handleHoverEnter} onMouseLeave={handleHoverLeave} className="flex items-center gap-2 font-mono text-xs md:text-sm uppercase tracking-widest hover:opacity-60 transition-opacity">
               <Github size={18} /> GitHub
             </a>
-            <a href="#" onMouseEnter={handleHoverEnter} onMouseLeave={handleHoverLeave} className="flex items-center gap-2 font-mono text-xs md:text-sm uppercase tracking-widest hover:opacity-60 transition-opacity">
+            <a href="https://www.linkedin.com/in/sharishsk20" target="_blank" rel="noreferrer" onMouseEnter={handleHoverEnter} onMouseLeave={handleHoverLeave} className="flex items-center gap-2 font-mono text-xs md:text-sm uppercase tracking-widest hover:opacity-60 transition-opacity">
               <Linkedin size={18} /> LinkedIn
             </a>
             <a href="mailto:sharishsasi@gmail.com" onMouseEnter={handleHoverEnter} onMouseLeave={handleHoverLeave} className="flex items-center gap-2 font-mono text-xs md:text-sm uppercase tracking-widest hover:opacity-60 transition-opacity">
               <Mail size={18} /> Email
+            </a>
+            <a href="#" onMouseEnter={handleHoverEnter} onMouseLeave={handleHoverLeave} className="flex items-center gap-2 font-mono text-xs md:text-sm uppercase tracking-widest hover:opacity-60 transition-opacity text-white bg-black/20 dark:bg-white/20 px-4 py-2 rounded-full border border-current">
+              <FileText size={18} /> Resume
             </a>
           </div>
         </div>
