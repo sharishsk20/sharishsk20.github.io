@@ -239,8 +239,8 @@ export default function App() {
             <div className="md:col-span-4">
               <h2 className="font-display text-4xl md:text-6xl font-bold uppercase tracking-tight mb-6 leading-none">Expertise<br/>& Context</h2>
               <p className="text-sm uppercase tracking-widest opacity-60 mb-12 flex flex-col gap-2">
-                <span>SRM Institute of Science and Tech</span>
-                <span>B.Tech '27 • 8.68 CGPA</span>
+                <span>SRM Institute of Science and Technology</span>
+                <span>B.Tech-CSE '27 • 8.45 CGPA</span>
               </p>
             </div>
             <div className="md:col-span-8 flex flex-col gap-8 md:gap-12 text-xl md:text-2xl font-medium leading-relaxed">
