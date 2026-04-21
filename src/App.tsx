@@ -9,6 +9,7 @@ gsap.registerPlugin(ScrollTrigger);
 export default function App() {
   const [cursorVariant, setCursorVariant] = useState('default');
   const [modalContent, setModalContent] = useState<{title: string, subtitle?: string, content: React.ReactNode} | null>(null);
+  const [emailCopied, setEmailCopied] = useState(false);
   
   const containerRef = useRef<HTMLDivElement>(null);
   const heroRef = useRef<HTMLDivElement>(null);
@@ -169,6 +170,13 @@ export default function App() {
     setModalContent(null);
     lenisRef.current?.start();
     document.body.style.overflow = 'auto';
+  };
+
+  const handleCopyEmail = (e: React.MouseEvent) => {
+    e.preventDefault();
+    navigator.clipboard.writeText("sharishsasi@gmail.com");
+    setEmailCopied(true);
+    setTimeout(() => setEmailCopied(false), 2500);
   };
 
   return (
@@ -625,8 +633,8 @@ export default function App() {
             <a href="https://www.linkedin.com/in/sharishsk20" target="_blank" rel="noreferrer" onMouseEnter={handleHoverEnter} onMouseLeave={handleHoverLeave} className="flex items-center gap-2 font-mono text-xs md:text-sm uppercase tracking-widest hover:opacity-60 transition-opacity">
               <Linkedin size={18} /> LinkedIn
             </a>
-            <a href="mailto:sharishsasi@gmail.com" onMouseEnter={handleHoverEnter} onMouseLeave={handleHoverLeave} className="flex items-center gap-2 font-mono text-xs md:text-sm uppercase tracking-widest hover:opacity-60 transition-opacity">
-              <Mail size={18} /> Email
+            <a href="#" onClick={handleCopyEmail} onMouseEnter={handleHoverEnter} onMouseLeave={handleHoverLeave} className="flex items-center gap-2 font-mono text-xs md:text-sm uppercase tracking-widest hover:opacity-60 transition-opacity">
+              <Mail size={18} /> {emailCopied ? "Copied!" : "Email"}
             </a>
             <a href="https://drive.google.com/file/d/1DIiuEL3pjzlhfHYUMeb58ZtuhlrDdUDy/view?usp=sharing" target="_blank" rel="noreferrer" onMouseEnter={handleHoverEnter} onMouseLeave={handleHoverLeave} className="flex items-center gap-2 font-mono text-xs md:text-sm uppercase tracking-widest hover:opacity-60 transition-opacity text-[#DE5D26] bg-black dark:text-black dark:bg-[#F4F1EA] px-4 py-2 rounded-full border border-current">
               <FileText size={18} /> Resume
