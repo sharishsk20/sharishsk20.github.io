@@ -12,6 +12,7 @@ export default function App() {
   
   const containerRef = useRef<HTMLDivElement>(null);
   const heroRef = useRef<HTMLDivElement>(null);
+  const lenisRef = useRef<Lenis | null>(null);
 
   // Initialize smooth scrolling and cursor
   useEffect(() => {
@@ -27,6 +28,7 @@ export default function App() {
       touchMultiplier: mobile ? 1.5 : 2,
       syncTouch: true,
     });
+    lenisRef.current = lenis;
 
     lenis.on('scroll', ScrollTrigger.update);
 
@@ -159,13 +161,13 @@ export default function App() {
 
   const handleOpenModal = (title: string, subtitle: string, content: React.ReactNode) => {
     setModalContent({ title, subtitle, content });
-    // Stop body scrolling on modal open
+    lenisRef.current?.stop();
     document.body.style.overflow = 'hidden';
   };
 
   const handleCloseModal = () => {
     setModalContent(null);
-    // Restore body scrolling
+    lenisRef.current?.start();
     document.body.style.overflow = 'auto';
   };
 
@@ -176,8 +178,9 @@ export default function App() {
       {modalContent && (
         <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-8 bg-black/80 backdrop-blur-md" onClick={handleCloseModal}>
           <div 
-            className="bg-[#F4F1EA] text-[#1C1B1A] p-8 md:p-12 rounded-[2rem] max-w-4xl w-full max-h-[85vh] overflow-y-auto relative shadow-2xl" 
+            className="bg-[#F4F1EA] text-[#1C1B1A] p-8 md:p-12 rounded-[2rem] max-w-4xl w-full max-h-[85vh] overflow-y-auto relative shadow-2xl overscroll-none" 
             onClick={e => e.stopPropagation()}
+            data-lenis-prevent
           >
             <button 
               className="absolute top-6 right-6 p-2 bg-black/10 rounded-full hover:bg-black/20 transition-colors"
@@ -611,7 +614,7 @@ export default function App() {
             <a href="mailto:sharishsasi@gmail.com" onMouseEnter={handleHoverEnter} onMouseLeave={handleHoverLeave} className="flex items-center gap-2 font-mono text-xs md:text-sm uppercase tracking-widest hover:opacity-60 transition-opacity">
               <Mail size={18} /> Email
             </a>
-            <a href="#" onMouseEnter={handleHoverEnter} onMouseLeave={handleHoverLeave} className="flex items-center gap-2 font-mono text-xs md:text-sm uppercase tracking-widest hover:opacity-60 transition-opacity text-[#DE5D26] bg-black dark:text-black dark:bg-[#F4F1EA] px-4 py-2 rounded-full border border-current">
+            <a href="https://drive.google.com/file/d/1DIiuEL3pjzlhfHYUMeb58ZtuhlrDdUDy/view?usp=sharing" target="_blank" rel="noreferrer" onMouseEnter={handleHoverEnter} onMouseLeave={handleHoverLeave} className="flex items-center gap-2 font-mono text-xs md:text-sm uppercase tracking-widest hover:opacity-60 transition-opacity text-[#DE5D26] bg-black dark:text-black dark:bg-[#F4F1EA] px-4 py-2 rounded-full border border-current">
               <FileText size={18} /> Resume
             </a>
           </div>
