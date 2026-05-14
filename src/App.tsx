@@ -282,7 +282,10 @@ export default function App() {
                 Passionate about building secure data pipelines, containerizing machine learning deployments, and architecting full-stack solutions for complex, hardware-integrated environments.
               </p>
               <p className="opacity-70 text-lg">
-                Grew up competing in Roller Skating and Taekwondo at the national level, picked up Mini Golf later. Outside of tech, I'm usually watching films, listening to Travis Scott, Kendrick, or Tamil indie, or catching up on the Waveform podcast. I game when I can, and I tend to clutch it at the last minute — in pretty much everything.
+                My approach to technology is rooted in a lifelong fascination with how complex systems operate and a personal history of competing in high-stakes environments. Having spent years in national-level competitive sports, I developed a disciplined focus and a reliance on instinct that now defines my technical work. I am most effective when navigating challenges that require both meticulous preparation and the ability to adapt—finding the "clutch" solution when the pressure is highest and the margin for error is thin.
+              </p>
+              <p className="opacity-70 text-lg">
+                Beyond the terminal, I'm drawn to anything that prioritizes atmosphere and intricate craft. Whether it's the layered, psychedelic production of modern hip-hop, the visual storytelling of film, or the mechanical discipline of a demanding game, I value experiences that reward patience and a deep understanding of the medium. I don't just participate in these spaces; I study the flow and the mechanics that make them work.
               </p>
             </div>
           </div>
