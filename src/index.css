@@ -1,0 +1,108 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Space Grotesk", "Inter", sans-serif;
+  
+  --color-marty-bg: #F4F1EA;
+  --color-marty-ink: #1C1B1A;
+  --color-marty-orange: #DE5D26;
+  --color-marty-yellow: #E6B93D;
+  --color-marty-drab: #485446;
+  --color-marty-dark: #2B2A29;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: var(--color-marty-bg);
+  color: var(--color-marty-ink);
+  overflow-x: hidden;
+  cursor: none; /* Hide default cursor for custom cursor */
+}
+
+a, button {
+  cursor: none;
+}
+
+/* Typography styles */
+.font-display {
+  font-family: 'Space Grotesk', sans-serif;
+}
+
+/* Lenis Scroll */
+html.lenis, html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-smooth iframe {
+  pointer-events: none;
+}
+
+/* Custom Cursor */
+.custom-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: var(--color-marty-orange);
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  mix-blend-mode: exclusion;
+  transition: width 0.3s ease, height 0.3s ease, background-color 0.3s ease;
+}
+
+.custom-cursor.hovering {
+  width: 60px;
+  height: 60px;
+  background-color: var(--color-marty-yellow);
+}
+
+.custom-cursor.hovering-project {
+  width: 80px;
+  height: 80px;
+  background-color: white;
+  mix-blend-mode: normal;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.custom-cursor.hovering-project::after {
+  content: "VIEW";
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--color-marty-ink);
+}
+
+/* Utility for Text Reveal */
+.reveal-text {
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+}
+
+.reveal-text span {
+  display: inline-block;
+  transform: translateY(100%);
+  opacity: 0;
+}
+
+/* Section transition bg */
+.bg-transition {
+  transition: background-color 0.8s ease, color 0.8s ease;
+}
