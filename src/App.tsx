@@ -282,7 +282,7 @@ export default function App() {
                 Passionate about building secure data pipelines, containerizing machine learning deployments, and architecting full-stack solutions for complex, hardware-integrated environments.
               </p>
               <p className="opacity-70 text-lg">
-                When I'm not writing bash scripts or debugging Docker containers, I'm a huge fan of high-precision action and Souls-like games. Having mastered the FromSoftware library, I'm eagerly anticipating titles like Black Myth: Wukong and Silksong.
+                Grew up competing in Roller Skating and Taekwondo at the national level, picked up Mini Golf later. Outside of tech, I'm usually watching films, listening to Travis Scott, Kendrick, or Tamil indie, or catching up on the Waveform podcast. I game when I can, and I tend to clutch it at the last minute — in pretty much everything.
               </p>
             </div>
           </div>
