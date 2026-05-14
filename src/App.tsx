@@ -399,7 +399,7 @@ export default function App() {
             </div>
             <div className="md:w-6/12 flex flex-col justify-center mt-4 md:mt-0">
               <p className="text-lg md:text-xl font-medium opacity-80 leading-relaxed mb-8">
-                Architected an edge auditor deployed on Raspberry Pi hardware to effectively manage AI workloads. Implemented Random Forest algorithms for real-time, localized intrusion detection. <span className="opacity-50 italic text-sm">(Click for deep dive)</span>
+                Architected and deployed an edge auditor on Raspberry Pi hardware to manage AI workloads under resource constraints. Implemented a Random Forest classifier for real-time, localized network intrusion detection with secure cloud synchronization. <span className="opacity-50 italic text-sm">(Click for deep dive)</span>
               </p>
               <div className="flex flex-wrap gap-3">
                 {['Raspberry Pi', 'Random Forest', 'Cloud Architecture'].map(t => (
@@ -452,7 +452,7 @@ export default function App() {
             </div>
             <div className="md:w-6/12 flex flex-col justify-center mt-4 md:mt-0">
               <p className="text-lg md:text-xl font-medium opacity-80 leading-relaxed mb-8">
-                Comprehensive forensic framework analyzing complex network protocols to audit TOR network traffic for de-anonymization using advanced Python and Bash scripting. <span className="opacity-50 italic text-sm">(Click for deep dive)</span>
+                Built a forensic framework to audit and analyze TOR network traffic for de-anonymization. Developed automated Python and Bash pipelines to process high-volume network telemetry and identify protocol-level anomalies. <span className="opacity-50 italic text-sm">(Click for deep dive)</span>
               </p>
               <div className="flex flex-wrap gap-3">
                 {['Python', 'Bash Scripting', 'Network Protocols', 'TOR'].map(t => (
@@ -498,7 +498,7 @@ export default function App() {
             </div>
             <div className="md:w-6/12 flex flex-col justify-center mt-4 md:mt-0">
               <p className="text-lg md:text-xl font-medium opacity-80 leading-relaxed mb-8">
-                Engineered and deployed a full-stack web application on AWS with Flask and a cloud-hosted MSSQL database, resulting in an 85% reduction in data entry errors. <span className="opacity-50 italic text-sm">(Click for deep dive)</span>
+                Engineered and deployed a full-stack inventory management application on AWS using Flask and a cloud-hosted MSSQL database. Designed a normalized schema and strict validation logic that reduced data entry errors by 85%. <span className="opacity-50 italic text-sm">(Click for deep dive)</span>
               </p>
               <div className="flex flex-wrap gap-3">
                 {['AWS', 'Flask', 'MSSQL', 'Web App'].map(t => (
@@ -550,7 +550,7 @@ export default function App() {
             </div>
             <div className="md:w-6/12 flex flex-col justify-center mt-4 md:mt-0">
               <p className="text-lg md:text-xl font-medium opacity-80 leading-relaxed mb-8">
-                Engineered a low-latency data streaming protocol to transmit real-time vital signs via Bluetooth using Kotlin, implementing CRC and Hamming Code algorithms for 99.9% reliable transmission. <span className="opacity-50 italic text-sm">(Click for deep dive)</span>
+                Engineered a low-latency Bluetooth streaming protocol in Kotlin to transmit real-time vital signs from a Wear OS device to Android. Implemented CRC and Hamming Code error-correction algorithms from scratch, achieving 99.9% transmission reliability. <span className="opacity-50 italic text-sm">(Click for deep dive)</span>
               </p>
               <div className="flex flex-wrap gap-3">
                 {['Kotlin', 'Wear OS', 'Bluetooth', 'Algorithms'].map(t => (
@@ -603,7 +603,7 @@ export default function App() {
             </div>
             <div className="md:w-6/12 flex flex-col justify-center mt-4 md:mt-0">
               <p className="text-lg md:text-xl font-medium opacity-80 leading-relaxed mb-8">
-                Developed a machine learning regression model to predict e-commerce product prices based on text descriptions and metadata using NLP. Achieved high pricing accuracy (92%) while minimizing SMAPE across 15+ categories. <span className="opacity-50 italic text-sm">(Click for deep dive)</span>
+                Developed an ML regression pipeline to predict Amazon product prices from unstructured text descriptions and metadata. Applied TF-IDF vectorization and SMAPE-optimized training to achieve 92% pricing accuracy across 15+ product categories. <span className="opacity-50 italic text-sm">(Click for deep dive)</span>
               </p>
               <div className="flex flex-wrap gap-3">
                 {['Python', 'Scikit-Learn', 'NLP', 'TF-IDF'].map(t => (
