@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Lenis from 'lenis';
-import { ArrowDownRight, ArrowUpRight, Github, Linkedin, Mail, FileText, X } from 'lucide-react';
+import { ArrowDownRight, ArrowUpRight, Github, Linkedin, Mail, FileText, X, Music } from 'lucide-react';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -659,6 +659,9 @@ export default function App() {
           <div className="flex gap-6 md:gap-8 flex-wrap justify-center pointer-events-auto">
             <a href="https://github.com/sharishsk20" target="_blank" rel="noreferrer" onMouseEnter={handleHoverEnter} onMouseLeave={handleHoverLeave} className="flex items-center gap-2 font-mono text-xs md:text-sm uppercase tracking-widest hover:opacity-60 transition-opacity">
               <Github size={18} /> GitHub
+            </a>
+            <a href="https://music.apple.com/profile/sharishsk20" target="_blank" rel="noreferrer" onMouseEnter={handleHoverEnter} onMouseLeave={handleHoverLeave} className="flex items-center gap-2 font-mono text-xs md:text-sm uppercase tracking-widest hover:opacity-60 transition-opacity">
+              <Music size={18} /> Music
             </a>
             <a href="https://www.linkedin.com/in/sharishsk20" target="_blank" rel="noreferrer" onMouseEnter={handleHoverEnter} onMouseLeave={handleHoverLeave} className="flex items-center gap-2 font-mono text-xs md:text-sm uppercase tracking-widest hover:opacity-60 transition-opacity">
               <Linkedin size={18} /> LinkedIn
