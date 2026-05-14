@@ -3,7 +3,6 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Lenis from 'lenis';
 import { ArrowDownRight, ArrowUpRight, Github, Linkedin, Mail, FileText, X } from 'lucide-react';
-import Magnetic from './Magnetic';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -240,15 +239,9 @@ export default function App() {
 
       <nav className="fixed top-0 w-full p-6 md:p-10 flex justify-end items-center z-40 mix-blend-difference text-[var(--color-marty-bg)] pointer-events-none">
         <div className="flex gap-6 text-sm font-medium uppercase tracking-widest hidden md:flex pointer-events-auto">
-          <Magnetic>
-            <a href="#about-section" onMouseEnter={handleHoverEnter} onMouseLeave={handleHoverLeave} className="hover:opacity-60 transition-opacity p-2">About</a>
-          </Magnetic>
-          <Magnetic>
-            <a href="#projects-section" onMouseEnter={handleHoverEnter} onMouseLeave={handleHoverLeave} className="hover:opacity-60 transition-opacity p-2">Projects</a>
-          </Magnetic>
-          <Magnetic>
-            <a href="#contact-section" onMouseEnter={handleHoverEnter} onMouseLeave={handleHoverLeave} className="hover:opacity-60 transition-opacity p-2">Contact</a>
-          </Magnetic>
+          <a href="#about-section" onMouseEnter={handleHoverEnter} onMouseLeave={handleHoverLeave} className="hover:opacity-60 transition-opacity">About</a>
+          <a href="#projects-section" onMouseEnter={handleHoverEnter} onMouseLeave={handleHoverLeave} className="hover:opacity-60 transition-opacity">Projects</a>
+          <a href="#contact-section" onMouseEnter={handleHoverEnter} onMouseLeave={handleHoverLeave} className="hover:opacity-60 transition-opacity">Contact</a>
         </div>
       </nav>
 
@@ -637,16 +630,14 @@ export default function App() {
             Currently open for new opportunities, collaborations, and discussions about edge compute architecture.
           </p>
           
-          <Magnetic strength={0.3}>
-            <a 
-              href="mailto:sharishsasi@gmail.com"
-              onMouseEnter={handleHoverEnter} 
-              onMouseLeave={handleHoverLeave}
-              className="group relative inline-flex items-center gap-4 text-2xl md:text-4xl font-display font-bold uppercase border-b-2 border-current pb-2 hover:opacity-70 transition-opacity pointer-events-auto p-4"
-            >
-              Say Hello <ArrowUpRight className="group-hover:translate-x-2 group-hover:-translate-y-2 transition-transform" />
-            </a>
-          </Magnetic>
+          <a 
+            href="mailto:sharishsasi@gmail.com"
+            onMouseEnter={handleHoverEnter} 
+            onMouseLeave={handleHoverLeave}
+            className="group relative inline-flex items-center gap-4 text-2xl md:text-4xl font-display font-bold uppercase border-b-2 border-current pb-2 hover:opacity-70 transition-opacity pointer-events-auto"
+          >
+            Say Hello <ArrowUpRight className="group-hover:translate-x-2 group-hover:-translate-y-2 transition-transform" />
+          </a>
         </div>
 
         <div className="max-w-7xl mx-auto w-full flex flex-col md:flex-row justify-between items-center z-10 border-t border-current pt-8 mt-12 gap-8 md:gap-0">
@@ -655,26 +646,18 @@ export default function App() {
           </div>
           
           <div className="flex gap-6 md:gap-8 flex-wrap justify-center pointer-events-auto">
-            <Magnetic>
-              <a href="https://github.com/sharishsk20" target="_blank" rel="noreferrer" onMouseEnter={handleHoverEnter} onMouseLeave={handleHoverLeave} className="flex items-center gap-2 font-mono text-xs md:text-sm uppercase tracking-widest hover:opacity-60 transition-opacity p-2">
-                <Github size={18} /> GitHub
-              </a>
-            </Magnetic>
-            <Magnetic>
-              <a href="https://www.linkedin.com/in/sharishsk20" target="_blank" rel="noreferrer" onMouseEnter={handleHoverEnter} onMouseLeave={handleHoverLeave} className="flex items-center gap-2 font-mono text-xs md:text-sm uppercase tracking-widest hover:opacity-60 transition-opacity p-2">
-                <Linkedin size={18} /> LinkedIn
-              </a>
-            </Magnetic>
-            <Magnetic>
-              <a href="#" onClick={handleCopyEmail} onMouseEnter={handleHoverEnter} onMouseLeave={handleHoverLeave} className="flex items-center gap-2 font-mono text-xs md:text-sm uppercase tracking-widest hover:opacity-60 transition-opacity p-2">
-                <Mail size={18} /> {emailCopied ? "Copied!" : "Email"}
-              </a>
-            </Magnetic>
-            <Magnetic>
-              <a href="https://drive.google.com/file/d/1FO2KWyW5Uc0BxJNEsZgrwsJtaU-3eF1K/view?usp=sharing" target="_blank" rel="noreferrer" onMouseEnter={handleHoverEnter} onMouseLeave={handleHoverLeave} className="flex items-center gap-2 font-mono text-xs md:text-sm uppercase tracking-widest hover:opacity-60 transition-opacity text-[#DE5D26] bg-black dark:text-black dark:bg-[#F4F1EA] px-6 py-3 rounded-full border border-current">
-                <FileText size={18} /> Resume
-              </a>
-            </Magnetic>
+            <a href="https://github.com/sharishsk20" target="_blank" rel="noreferrer" onMouseEnter={handleHoverEnter} onMouseLeave={handleHoverLeave} className="flex items-center gap-2 font-mono text-xs md:text-sm uppercase tracking-widest hover:opacity-60 transition-opacity">
+              <Github size={18} /> GitHub
+            </a>
+            <a href="https://www.linkedin.com/in/sharishsk20" target="_blank" rel="noreferrer" onMouseEnter={handleHoverEnter} onMouseLeave={handleHoverLeave} className="flex items-center gap-2 font-mono text-xs md:text-sm uppercase tracking-widest hover:opacity-60 transition-opacity">
+              <Linkedin size={18} /> LinkedIn
+            </a>
+            <a href="#" onClick={handleCopyEmail} onMouseEnter={handleHoverEnter} onMouseLeave={handleHoverLeave} className="flex items-center gap-2 font-mono text-xs md:text-sm uppercase tracking-widest hover:opacity-60 transition-opacity">
+              <Mail size={18} /> {emailCopied ? "Copied!" : "Email"}
+            </a>
+            <a href="https://drive.google.com/file/d/1FO2KWyW5Uc0BxJNEsZgrwsJtaU-3eF1K/view?usp=sharing" target="_blank" rel="noreferrer" onMouseEnter={handleHoverEnter} onMouseLeave={handleHoverLeave} className="flex items-center gap-2 font-mono text-xs md:text-sm uppercase tracking-widest hover:opacity-60 transition-opacity text-[#DE5D26] bg-black dark:text-black dark:bg-[#F4F1EA] px-4 py-2 rounded-full border border-current">
+              <FileText size={18} /> Resume
+            </a>
           </div>
         </div>
       </section>
