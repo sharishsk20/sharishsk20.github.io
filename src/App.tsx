@@ -205,22 +205,29 @@ export default function App() {
       {modalContent && (
         <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-8 bg-black/80 backdrop-blur-md" onClick={handleCloseModal}>
           <div 
-            className="bg-[#F4F1EA] text-[#1C1B1A] p-8 md:p-12 rounded-[2rem] max-w-4xl w-full max-h-[85vh] overflow-y-auto relative shadow-2xl overscroll-none" 
+            className="bg-[#F4F1EA] text-[#1C1B1A] rounded-[2rem] max-w-4xl w-full max-h-[85vh] flex flex-col relative shadow-2xl overscroll-none" 
             onClick={e => e.stopPropagation()}
             data-lenis-prevent
           >
-            <button 
-              className="absolute top-6 right-6 p-2 bg-black/10 rounded-full hover:bg-black/20 transition-colors"
-              onClick={handleCloseModal}
-            >
-              <X size={24} />
-            </button>
-            <h3 className="font-display text-4xl md:text-5xl border-b border-black/20 pb-4 font-bold uppercase mb-4">{modalContent.title}</h3>
-            {modalContent.subtitle && <p className="font-mono text-sm md:text-base opacity-70 mb-8 border-l-2 border-[#DE5D26] pl-4">{modalContent.subtitle}</p>}
-            <div className="font-medium text-base md:text-lg">
+            {/* Sticky header with close button */}
+            <div className="sticky top-0 z-10 bg-[#F4F1EA] rounded-t-[2rem] px-8 md:px-12 pt-8 pb-4 flex justify-between items-start border-b border-black/10">
+              <div>
+                <h3 className="font-display text-3xl md:text-5xl font-bold uppercase">{modalContent.title}</h3>
+                {modalContent.subtitle && <p className="font-mono text-sm md:text-base opacity-70 mt-3 border-l-2 border-[#DE5D26] pl-4">{modalContent.subtitle}</p>}
+              </div>
+              <button 
+                className="ml-4 flex-shrink-0 p-2 bg-black/10 rounded-full hover:bg-black/20 transition-colors"
+                onClick={handleCloseModal}
+              >
+                <X size={24} />
+              </button>
+            </div>
+            {/* Scrollable content */}
+            <div className="overflow-y-auto px-8 md:px-12 py-8 font-medium text-base md:text-lg">
               {modalContent.content}
             </div>
           </div>
+
         </div>
       )}
 
