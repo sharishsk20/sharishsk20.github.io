@@ -363,7 +363,8 @@ export default function App() {
             onMouseLeave={handleHoverLeave}
             onClick={() => handleOpenModal(
               "Cloud-Edge IDS",
-              "Edge & AI Archite              <div className="space-y-8 opacity-90 leading-relaxed pt-2">
+              "Edge & AI Architecture",
+              <div className="space-y-8 opacity-90 leading-relaxed pt-2">
                 <div>
                   <h4 className="font-bold text-xl mb-3 text-[#DE5D26]">1. Edge Auditor & Resource Management</h4>
                   <p>Deployed the auditor as a containerized microservice on K3s (lightweight Kubernetes) running on a Raspberry Pi — where every MB of RAM counts.</p>
@@ -389,7 +390,8 @@ export default function App() {
                     <li><strong>Federated Retraining:</strong> Aggregated anonymized edge telemetry periodically to retrain the model in the cloud and push updated weights back to the Pi, enabling the system to adapt to new attack patterns over time.</li>
                   </ul>
                 </div>
-              </div>          </div>
+              </div>
+
             )}
           >
             <div className="md:w-5/12">
