@@ -642,7 +642,9 @@ export default function App() {
           </p>
           
           <a 
-            href="mailto:sharishsasi@gmail.com"
+            href="https://mail.google.com/mail/?view=cm&fs=1&to=sharishsasi@gmail.com"
+            target="_blank"
+            rel="noreferrer"
             onMouseEnter={handleHoverEnter} 
             onMouseLeave={handleHoverLeave}
             className="group relative inline-flex items-center gap-4 text-2xl md:text-4xl font-display font-bold uppercase border-b-2 border-current pb-2 hover:opacity-70 transition-opacity pointer-events-auto"
