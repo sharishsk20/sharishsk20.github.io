@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Lenis from 'lenis';
@@ -108,7 +108,7 @@ export default function App() {
           duration: { min: 0.4, max: 1.0 },
           delay: 0.1,
           ease: "power3.inOut"
-        }
+        } as any
       });
     });
 
@@ -122,7 +122,7 @@ export default function App() {
           duration: { min: 0.2, max: 0.5 },
           delay: 0.15,
           ease: "power1.inOut"
-        }
+        } as any
       });
     });
 
