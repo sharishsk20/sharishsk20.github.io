@@ -151,6 +151,25 @@ export default function App() {
       onEnterBack: () => gsap.to('body', { backgroundColor: '#DE5D26', color: '#1C1B1A', duration: 0.6 }),
     });
 
+    // REVEAL ANIMATIONS
+    const revealElements = document.querySelectorAll('.reveal');
+    revealElements.forEach((el) => {
+      gsap.fromTo(el, 
+        { opacity: 0, y: 50 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 1,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: el,
+            start: 'top 90%',
+            toggleActions: 'play none none none'
+          }
+        }
+      );
+    });
+
     return () => {
       lenis.destroy();
       window.removeEventListener('mousemove', updateCursor);
@@ -251,14 +270,14 @@ export default function App() {
       <section id="about-section" className="w-full flex flex-col">
         <div className="snap-element min-h-[70vh] py-32 px-6 md:px-12 flex flex-col justify-center max-w-7xl mx-auto w-full">
           <div className="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-8 w-full">
-            <div className="md:col-span-4">
+            <div className="md:col-span-4 reveal">
               <h2 className="font-display text-4xl md:text-6xl font-bold uppercase tracking-tight mb-6 leading-none">Expertise<br/>& Context</h2>
               <p className="text-sm uppercase tracking-widest opacity-60 mb-12 flex flex-col gap-2">
                 <span>SRM Institute of Science and Technology</span>
                 <span>B.Tech-CSE '27 • 8.45 CGPA</span>
               </p>
             </div>
-            <div className="md:col-span-8 flex flex-col gap-8 md:gap-12 text-xl md:text-2xl font-medium leading-relaxed">
+            <div className="md:col-span-8 flex flex-col gap-8 md:gap-12 text-xl md:text-2xl font-medium leading-relaxed reveal">
               <p>
                 Passionate about building secure data pipelines, containerizing machine learning deployments, and architecting full-stack solutions for complex, hardware-integrated environments.
               </p>
@@ -271,13 +290,13 @@ export default function App() {
 
         {/* Work Experience */}
         <div className="snap-element min-h-[50vh] py-24 px-6 md:px-12 flex flex-col justify-center max-w-7xl mx-auto w-full">
-          <div className="flex justify-between items-end mb-12 border-b border-current pb-4">
+          <div className="flex justify-between items-end mb-12 border-b border-current pb-4 reveal">
             <h2 className="font-display text-4xl md:text-6xl font-bold uppercase tracking-tight leading-none">Work<br/>Experience</h2>
             <span className="font-mono text-xs md:text-sm uppercase opacity-80">Professional</span>
           </div>
 
           <div 
-            className="p-8 md:p-12 border border-current rounded-[2rem] hover:bg-[#F4F1EA] hover:text-[#1C1B1A] transition-colors duration-500 cursor-pointer group"
+            className="p-8 md:p-12 border border-current rounded-[2rem] hover:bg-[#F4F1EA] hover:text-[#1C1B1A] transition-colors duration-500 cursor-pointer group reveal"
             onMouseEnter={handleHoverEnter} 
             onMouseLeave={handleHoverLeave}
             onClick={() => handleOpenModal(
@@ -305,29 +324,29 @@ export default function App() {
 
         {/* Skills Block */}
         <div className="snap-element min-h-[50vh] py-24 px-6 md:px-12 flex flex-col justify-center max-w-7xl mx-auto w-full">
-          <div className="flex justify-between items-end mb-12 border-b border-current pb-4">
+          <div className="flex justify-between items-end mb-12 border-b border-current pb-4 reveal">
             <h2 className="font-display text-4xl md:text-6xl font-bold uppercase tracking-tight leading-none">Technical<br/>Skills</h2>
             <span className="font-mono text-xs md:text-sm uppercase opacity-80">Core Competencies</span>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-12">
-            <div>
+            <div className="reveal">
               <h4 className="text-xs font-mono uppercase tracking-widest mb-4 opacity-50">01 / Systems & Infrastructure</h4>
               <p className="text-xl md:text-2xl font-display font-bold uppercase tracking-tight">Linux, Shell Scripting (Bash), Docker, Kubernetes (Basics), Networking (TCP/IP)</p>
             </div>
-            <div>
+            <div className="reveal">
               <h4 className="text-xs font-mono uppercase tracking-widest mb-4 opacity-50">02 / Programming Languages</h4>
               <p className="text-xl md:text-2xl font-display font-bold uppercase tracking-tight">Python, C, C++, JavaScript, Kotlin</p>
             </div>
-            <div>
+            <div className="reveal">
               <h4 className="text-xs font-mono uppercase tracking-widest mb-4 opacity-50">03 / Web Technologies & DBs</h4>
               <p className="text-xl md:text-2xl font-display font-bold uppercase tracking-tight">FastAPI, Flask, HTML, CSS, MSSQL, MongoDB</p>
             </div>
-            <div>
+            <div className="reveal">
               <h4 className="text-xs font-mono uppercase tracking-widest mb-4 opacity-50">04 / AI & ML Frameworks</h4>
               <p className="text-xl md:text-2xl font-display font-bold uppercase tracking-tight">TensorFlow, NLP, CatBoost, XGBoost, scikit-learn</p>
             </div>
-            <div>
+            <div className="reveal">
               <h4 className="text-xs font-mono uppercase tracking-widest mb-4 opacity-50">05 / Tools & Technologies</h4>
               <p className="text-xl md:text-2xl font-display font-bold uppercase tracking-tight">Git/GitHub, Android Studio, Wear OS</p>
             </div>
@@ -337,7 +356,7 @@ export default function App() {
 
       {/* SELECTED PROJECTS */}
       <section id="projects-section" className="w-full flex flex-col">
-        <div className="snap-element min-h-[40vh] pt-48 pb-16 px-6 md:px-12 max-w-7xl mx-auto w-full flex justify-between items-end">
+        <div className="snap-element min-h-[40vh] pt-48 pb-16 px-6 md:px-12 max-w-7xl mx-auto w-full flex justify-between items-end reveal">
           <h2 className="font-display text-5xl md:text-8xl font-bold uppercase tracking-tighter leading-none">Selected<br/>Works</h2>
           <span className="font-mono text-xs md:text-sm uppercase border-b border-current pb-2 opacity-80">2023 — Present</span>
         </div>
@@ -346,7 +365,7 @@ export default function App() {
           
           {/* Project 1 */}
           <div 
-            className="snap-element py-24 md:py-32 border-b border-current flex flex-col md:flex-row gap-8 justify-between hover:pl-4 transition-all duration-300 cursor-pointer group" 
+            className="snap-element py-24 md:py-32 border-b border-current flex flex-col md:flex-row gap-8 justify-between hover:pl-4 transition-all duration-300 cursor-pointer group reveal" 
             onMouseEnter={handleHoverEnter} 
             onMouseLeave={handleHoverLeave}
             onClick={() => handleOpenModal(
@@ -399,7 +418,7 @@ export default function App() {
 
           {/* Project 2 */}
           <div 
-            className="snap-element py-24 md:py-32 border-b border-current flex flex-col md:flex-row gap-8 justify-between hover:pl-4 transition-all duration-300 cursor-pointer group" 
+            className="snap-element py-24 md:py-32 border-b border-current flex flex-col md:flex-row gap-8 justify-between hover:pl-4 transition-all duration-300 cursor-pointer group reveal" 
             onMouseEnter={handleHoverEnter} 
             onMouseLeave={handleHoverLeave}
             onClick={() => handleOpenModal(
@@ -452,7 +471,7 @@ export default function App() {
           
           {/* Project 3 */}
           <div 
-            className="snap-element py-24 md:py-32 border-b border-current flex flex-col md:flex-row gap-8 justify-between hover:pl-4 transition-all duration-300 cursor-pointer group" 
+            className="snap-element py-24 md:py-32 border-b border-current flex flex-col md:flex-row gap-8 justify-between hover:pl-4 transition-all duration-300 cursor-pointer group reveal" 
             onMouseEnter={handleHoverEnter} 
             onMouseLeave={handleHoverLeave}
             onClick={() => handleOpenModal(
@@ -498,7 +517,7 @@ export default function App() {
 
           {/* Project 4 */}
           <div 
-            className="snap-element py-24 md:py-32 border-b border-current flex flex-col md:flex-row gap-8 justify-between hover:pl-4 transition-all duration-300 cursor-pointer group" 
+            className="snap-element py-24 md:py-32 border-b border-current flex flex-col md:flex-row gap-8 justify-between hover:pl-4 transition-all duration-300 cursor-pointer group reveal" 
             onMouseEnter={handleHoverEnter} 
             onMouseLeave={handleHoverLeave}
             onClick={() => handleOpenModal(
@@ -550,7 +569,7 @@ export default function App() {
 
           {/* Project 5 (NEW) */}
           <div 
-            className="snap-element py-24 md:py-32 flex flex-col md:flex-row gap-8 justify-between hover:pl-4 transition-all duration-300 cursor-pointer group" 
+            className="snap-element py-24 md:py-32 flex flex-col md:flex-row gap-8 justify-between hover:pl-4 transition-all duration-300 cursor-pointer group reveal" 
             onMouseEnter={handleHoverEnter} 
             onMouseLeave={handleHoverLeave}
             onClick={() => handleOpenModal(
@@ -610,7 +629,7 @@ export default function App() {
           <h2 className="font-display text-[20vw] font-bold uppercase leading-none tracking-tighter">BUILD</h2>
         </div>
 
-        <div className="max-w-7xl mx-auto w-full flex-grow flex flex-col justify-center items-center z-10 text-center">
+        <div className="max-w-7xl mx-auto w-full flex-grow flex flex-col justify-center items-center z-10 text-center reveal">
           <h2 className="font-display text-6xl md:text-[8vw] font-bold uppercase tracking-tighter leading-none mb-8">
             Let's build<br/>something.
           </h2>
