@@ -691,9 +691,9 @@ export default function App() {
             </div>
           </div>
 
-          {/* Project 8: Wear OS Health — last card, no border-b */}
+          {/* Project 8: Wear OS Health */}
           <div
-            className="snap-element py-24 md:py-32 flex flex-col md:flex-row gap-8 justify-between hover:pl-4 transition-all duration-300 cursor-pointer group reveal"
+            className="snap-element py-24 md:py-32 border-b border-current flex flex-col md:flex-row gap-8 justify-between hover:pl-4 transition-all duration-300 cursor-pointer group reveal"
             onMouseEnter={handleHoverEnter}
             onMouseLeave={handleHoverLeave}
             onClick={() => handleOpenModal(
@@ -743,12 +743,102 @@ export default function App() {
             </div>
           </div>
 
-          {/* Other Work — compact strip */}
-          <div className="py-12 border-t border-current/30">
-            <span className="font-mono text-xs uppercase tracking-widest opacity-40 block mb-4">Other Work</span>
-            <div className="flex flex-col md:flex-row flex-wrap gap-x-12 gap-y-2 font-mono text-sm opacity-50">
-              <span>Retail Regression Engine — ML regression · Python · Scikit-Learn · TF-IDF</span>
-              <span>AWS Inventory — Full-stack cloud app · Flask · MSSQL · AWS EC2</span>
+          {/* Project 9: AWS Inventory */}
+          <div
+            className="snap-element py-24 md:py-32 border-b border-current flex flex-col md:flex-row gap-8 justify-between hover:pl-4 transition-all duration-300 cursor-pointer group reveal"
+            onMouseEnter={handleHoverEnter}
+            onMouseLeave={handleHoverLeave}
+            onClick={() => handleOpenModal(
+              "AWS Inventory",
+              "Full-Stack Cloud Architecture",
+              <div className="space-y-8 opacity-90 leading-relaxed pt-2">
+                <div>
+                  <h4 className="font-bold text-xl mb-3 text-[#DE5D26]">1. Full-Stack Architecture on AWS</h4>
+                  <p>Migrated a manual, error-prone inventory process to a cloud-native application built for reliability and scale.</p>
+                  <ul className="list-disc pl-6 mt-4 space-y-3 marker:text-black/50">
+                    <li><strong>Flask REST API:</strong> Built the backend using Flask, exposing RESTful endpoints for all CRUD operations. Used SQLAlchemy as the ORM to interface cleanly with the MSSQL database.</li>
+                    <li><strong>Dynamic Frontend:</strong> Developed a JavaScript dashboard with real-time search and filtering, and async form submissions to eliminate full-page reloads during high-volume data entry.</li>
+                    <li><strong>AWS Deployment:</strong> Deployed on AWS EC2 with an Application Load Balancer to ensure availability during peak operational hours.</li>
+                  </ul>
+                </div>
+                <div>
+                  <h4 className="font-bold text-xl mb-3 text-[#DE5D26]">2. MSSQL Schema Design & Data Integrity</h4>
+                  <p>Replaced unstructured spreadsheets with a fully normalized relational database, making data corruption structurally impossible.</p>
+                  <ul className="list-disc pl-6 mt-4 space-y-3 marker:text-black/50">
+                    <li><strong>Schema Design:</strong> Designed a normalized MSSQL schema with Primary/Foreign Key constraints and Stored Procedures, eliminating phantom inventory and duplicate entries at the database level.</li>
+                    <li><strong>Cloud RDS:</strong> Hosted the database on AWS RDS with automated backups, multi-AZ redundancy, and encrypted storage.</li>
+                    <li><strong>Validation Logic:</strong> Reduced data entry errors by 85% through strict frontend and backend validation — regex for SKUs, enforced dropdowns, and mandatory field checks.</li>
+                  </ul>
+                </div>
+              </div>
+            )}
+          >
+            <div className="md:w-5/12">
+              <span className="font-mono text-xs md:text-sm uppercase tracking-widest block opacity-60 mb-4">Full-Stack Cloud</span>
+              <h3 className="font-display text-4xl md:text-6xl font-bold uppercase leading-tight tracking-tight flex items-center gap-4">AWS Inventory <ArrowUpRight className="hidden md:inline-block opacity-0 -translate-y-2 -translate-x-2 group-hover:opacity-100 group-hover:translate-y-0 group-hover:translate-x-0 transition-all" /></h3>
+            </div>
+            <div className="md:w-6/12 flex flex-col justify-center mt-4 md:mt-0">
+              <p className="text-lg md:text-xl font-medium opacity-80 leading-relaxed mb-8">
+                Engineered and deployed a full-stack inventory management application on AWS using Flask and a cloud-hosted MSSQL database. Designed a normalized schema and strict validation logic that reduced data entry errors by 85%. <span className="opacity-50 italic text-sm">(Click for deep dive)</span>
+              </p>
+              <div className="flex flex-wrap gap-3">
+                {['AWS', 'Flask', 'MSSQL', 'Web App'].map(t => (
+                  <span key={t} className="px-4 py-2 border border-current rounded-full text-[10px] md:text-xs font-mono uppercase tracking-widest">{t}</span>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Project 10: Retail Regression Engine — last card, no border-b */}
+          <div
+            className="snap-element py-24 md:py-32 flex flex-col md:flex-row gap-8 justify-between hover:pl-4 transition-all duration-300 cursor-pointer group reveal"
+            onMouseEnter={handleHoverEnter}
+            onMouseLeave={handleHoverLeave}
+            onClick={() => handleOpenModal(
+              "Retail Regression Engine",
+              "Machine Learning & NLP",
+              <div className="space-y-8 opacity-90 leading-relaxed pt-2">
+                <div>
+                  <h4 className="font-bold text-xl mb-3 text-[#DE5D26]">1. NLP-Driven Feature Extraction</h4>
+                  <p>Treated unstructured product descriptions as a primary signal rather than relying solely on categorical metadata.</p>
+                  <ul className="list-disc pl-6 mt-4 space-y-3 marker:text-black/50">
+                    <li><strong>TF-IDF Vectorization:</strong> Applied TF-IDF to convert raw product descriptions into numerical feature vectors, allowing the model to recognize that terms like "OLED," "Leica-engineered," or "Premium" carry significant price weight.</li>
+                    <li><strong>Feature Engineering:</strong> Extracted additional signals including description length, brand tier, and presence of keywords like "Warranty" or "Authentic" to build a rich multi-dimensional feature set.</li>
+                  </ul>
+                </div>
+                <div>
+                  <h4 className="font-bold text-xl mb-3 text-[#DE5D26]">2. SMAPE-Optimized Training</h4>
+                  <p>Chose SMAPE as the evaluation metric to handle the massive price variance across product categories fairly.</p>
+                  <ul className="list-disc pl-6 mt-4 space-y-3 marker:text-black/50">
+                    <li><strong>SMAPE:</strong> Optimized for Symmetric Mean Absolute Percentage Error so the model was penalized proportionally — a $10 error on a $15 product is treated as far worse than the same error on a $1,500 laptop.</li>
+                    <li><strong>Log Transformation:</strong> Applied log(y) to the target price variable to stabilize variance and improve regression convergence across heavily skewed pricing distributions.</li>
+                  </ul>
+                </div>
+                <div>
+                  <h4 className="font-bold text-xl mb-3 text-[#DE5D26]">3. Robust Pipeline & Outlier Handling</h4>
+                  <p>Built a clean, leakage-free ML pipeline to handle the noise inherent in real-world e-commerce data.</p>
+                  <ul className="list-disc pl-6 mt-4 space-y-3 marker:text-black/50">
+                    <li><strong>Outlier Removal:</strong> Applied IQR filtering and Z-score analysis to prune anomalous price points that would have skewed the regression line away from the true distribution.</li>
+                    <li><strong>Leakage-Free Design:</strong> Automated feature scaling and categorical encoding with strict train/test separation to guarantee zero data leakage between pipeline stages.</li>
+                    <li><strong>Result:</strong> Achieved 92% pricing accuracy across 15+ product categories using SMAPE-optimized regression combined with NLP-based feature extraction.</li>
+                  </ul>
+                </div>
+              </div>
+            )}
+          >
+            <div className="md:w-5/12">
+              <span className="font-mono text-xs md:text-sm uppercase tracking-widest block opacity-60 mb-4">ML & Applied AI</span>
+              <h3 className="font-display text-4xl md:text-6xl font-bold uppercase leading-tight tracking-tight flex items-center gap-4">Retail Regression Engine <ArrowUpRight className="hidden md:inline-block opacity-0 -translate-y-2 -translate-x-2 group-hover:opacity-100 group-hover:translate-y-0 group-hover:translate-x-0 transition-all" /></h3>
+            </div>
+            <div className="md:w-6/12 flex flex-col justify-center mt-4 md:mt-0">
+              <p className="text-lg md:text-xl font-medium opacity-80 leading-relaxed mb-8">
+                Developed an ML regression pipeline to predict Amazon product prices from unstructured text descriptions and metadata. Applied TF-IDF vectorization and SMAPE-optimized training to achieve 92% pricing accuracy across 15+ product categories. <span className="opacity-50 italic text-sm">(Click for deep dive)</span>
+              </p>
+              <div className="flex flex-wrap gap-3">
+                {['Python', 'Scikit-Learn', 'NLP', 'TF-IDF'].map(t => (
+                  <span key={t} className="px-4 py-2 border border-current rounded-full text-[10px] md:text-xs font-mono uppercase tracking-widest">{t}</span>
+                ))}
+              </div>
             </div>
           </div>
 
@@ -781,11 +871,7 @@ export default function App() {
           </a>
         </div>
 
-        <p className="font-mono text-xs opacity-40 z-10 text-center px-4">
-          Open Source: Contributed Google-style docstrings to the <a href="https://github.com/collective/icalendar/issues/1072" target="_blank" rel="noreferrer" className="border-b border-current hover:opacity-70 transition-opacity">icalendar</a> Python library (issue #1072).
-        </p>
-
-        <div className="max-w-7xl mx-auto w-full flex flex-col md:flex-row justify-between items-center z-10 border-t border-current pt-8 mt-8 gap-8 md:gap-0">
+        <div className="max-w-7xl mx-auto w-full flex flex-col md:flex-row justify-between items-center z-10 border-t border-current pt-8 mt-12 gap-8 md:gap-0">
           <div className="font-mono text-sm uppercase tracking-widest">
             © {new Date().getFullYear()} Sharish SK
           </div>
