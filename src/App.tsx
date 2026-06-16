@@ -470,54 +470,7 @@ export default function App() {
             </div>
           </div>
 
-          {/* Project 3: DriveGuard Edge */}
-          <div
-            className="border-b-2 border-r-2 border-current px-6 md:px-10 py-10 md:py-14 flex flex-col gap-6 hover:bg-black/[0.04] transition-colors duration-300 cursor-pointer group reveal"
-            onMouseEnter={handleHoverEnter}
-            onMouseLeave={handleHoverLeave}
-            onClick={() => handleOpenModal(
-              "DriveGuard Edge",
-              "Real-Time Edge AI for Road Safety",
-              <div className="space-y-8 opacity-90 leading-relaxed pt-2">
-                <p className="font-mono text-xs uppercase tracking-widest opacity-50">Team of 4 · Tata InnoVent-27</p>
-                <div>
-                  <h4 className="font-bold text-xl mb-3 text-[#DE5D26]">1. On-Device Vision Pipeline</h4>
-                  <ul className="list-disc pl-6 mt-4 space-y-3 marker:text-black/50">
-                    <li><strong>Quantized Inference:</strong> TFLite INT8 quantized MobileNetV3-Small for fatigue/distraction classification within the Pi 4's compute and thermal budget.</li>
-                    <li><strong>Facial Landmarking:</strong> MediaPipe Face Mesh + OpenCV to track eye and head state (drowsiness, gaze-off-road) frame by frame.</li>
-                  </ul>
-                </div>
-                <div>
-                  <h4 className="font-bold text-xl mb-3 text-[#DE5D26]">2. Sensor Fusion & Stability</h4>
-                  <ul className="list-disc pl-6 mt-4 space-y-3 marker:text-black/50">
-                    <li><strong>Kalman Filter Fusion:</strong> Fused camera-derived state with motion sensor data via a Kalman filter to suppress false positives from road vibration and lighting changes.</li>
-                  </ul>
-                </div>
-                <div>
-                  <h4 className="font-bold text-xl mb-3 text-[#DE5D26]">3. Edge-to-Cloud Architecture</h4>
-                  <ul className="list-disc pl-6 mt-4 space-y-3 marker:text-black/50">
-                    <li><strong>FastAPI + React:</strong> Local FastAPI service for inference orchestration; React dashboard for live status.</li>
-                    <li><strong>AWS IoT Core:</strong> Streamed alerts and telemetry to AWS IoT Core for fleet-level monitoring.</li>
-                  </ul>
-                </div>
-              </div>
-            )}
-          >
-            <div>
-              <span className="font-mono text-xs uppercase tracking-widest block opacity-60 mb-3">Edge & AI</span>
-              <h3 className="font-display text-2xl md:text-3xl font-bold uppercase leading-tight tracking-tight flex items-start gap-3">DriveGuard Edge <ArrowUpRight className="flex-shrink-0 opacity-0 -translate-y-1 -translate-x-1 group-hover:opacity-100 group-hover:translate-y-0 group-hover:translate-x-0 transition-all" /></h3>
-            </div>
-            <p className="text-base md:text-lg font-medium opacity-80 leading-relaxed flex-grow">
-              Real-time driver fatigue and distraction detection for two-wheelers and commercial vehicles in India. Runs a quantized vision model on a Raspberry Pi 4 with sensor fusion, streaming alerts to the cloud. Built for Tata Technologies InnoVent-27.
-            </p>
-            <div className="flex flex-wrap gap-2">
-              {['TFLite', 'MediaPipe', 'Raspberry Pi', 'AWS IoT', 'Edge AI'].map(t => (
-                <span key={t} className="px-3 py-1.5 border border-current rounded-full text-[10px] font-mono uppercase tracking-widest">{t}</span>
-              ))}
-            </div>
-          </div>
-
-          {/* Project 4: VoiceShield AI */}
+          {/* Project 3: VoiceShield AI */}
           <div
             className="border-b-2 border-r-2 border-current px-6 md:px-10 py-10 md:py-14 flex flex-col gap-6 hover:bg-black/[0.04] transition-colors duration-300 cursor-pointer group reveal"
             onMouseEnter={handleHoverEnter}
@@ -557,7 +510,7 @@ export default function App() {
             </div>
           </div>
 
-          {/* Project 5: Federated Learning Demo */}
+          {/* Project 4: Federated Learning Demo */}
           <div
             className="border-b-2 border-r-2 border-current px-6 md:px-10 py-10 md:py-14 flex flex-col gap-6 hover:bg-black/[0.04] transition-colors duration-300 cursor-pointer group reveal"
             onMouseEnter={handleHoverEnter}
@@ -597,7 +550,7 @@ export default function App() {
             </div>
           </div>
 
-          {/* Project 6: BRN-01 Burner Chat */}
+          {/* Project 5: BRN-01 Burner Chat */}
           <div
             className="border-b-2 border-r-2 border-current px-6 md:px-10 py-10 md:py-14 flex flex-col gap-6 hover:bg-black/[0.04] transition-colors duration-300 cursor-pointer group reveal"
             onMouseEnter={handleHoverEnter}
@@ -637,7 +590,7 @@ export default function App() {
             </div>
           </div>
 
-          {/* Project 7: FaceAuthOffline */}
+          {/* Project 6: FaceAuthOffline */}
           <div
             className="border-b-2 border-r-2 border-current px-6 md:px-10 py-10 md:py-14 flex flex-col gap-6 hover:bg-black/[0.04] transition-colors duration-300 cursor-pointer group reveal"
             onMouseEnter={handleHoverEnter}
@@ -677,7 +630,7 @@ export default function App() {
             </div>
           </div>
 
-          {/* Project 8: Wear OS Health */}
+          {/* Project 7: Wear OS Health */}
           <div
             className="border-b-2 border-r-2 border-current px-6 md:px-10 py-10 md:py-14 flex flex-col gap-6 hover:bg-black/[0.04] transition-colors duration-300 cursor-pointer group reveal"
             onMouseEnter={handleHoverEnter}
@@ -727,7 +680,7 @@ export default function App() {
             </div>
           </div>
 
-          {/* Project 9: AWS Inventory */}
+          {/* Project 8: AWS Inventory */}
           <div
             className="border-b-2 border-r-2 border-current px-6 md:px-10 py-10 md:py-14 flex flex-col gap-6 hover:bg-black/[0.04] transition-colors duration-300 cursor-pointer group reveal"
             onMouseEnter={handleHoverEnter}
@@ -771,7 +724,7 @@ export default function App() {
             </div>
           </div>
 
-          {/* Project 10: Retail Regression Engine */}
+          {/* Project 9: Retail Regression Engine */}
           <div
             className="border-b-2 border-r-2 border-current px-6 md:px-10 py-10 md:py-14 flex flex-col gap-6 hover:bg-black/[0.04] transition-colors duration-300 cursor-pointer group reveal"
             onMouseEnter={handleHoverEnter}
