@@ -364,11 +364,11 @@ export default function App() {
           <span className="font-mono text-xs md:text-sm uppercase border-b border-current pb-2 opacity-80">2023 — Present</span>
         </div>
 
-        <div className="flex flex-col border-t-2 border-current px-6 md:px-12 max-w-7xl mx-auto w-full">
+        <div className="grid grid-cols-1 md:grid-cols-2 border-t-2 border-l-2 border-current max-w-7xl mx-auto w-full">
 
           {/* Project 1: Cloud-Edge IDS */}
           <div
-            className="snap-element py-24 md:py-32 border-b border-current flex flex-col md:flex-row gap-8 justify-between hover:pl-4 transition-all duration-300 cursor-pointer group reveal"
+            className="border-b-2 border-r-2 border-current px-6 md:px-10 py-10 md:py-14 flex flex-col gap-6 hover:bg-black/[0.04] transition-colors duration-300 cursor-pointer group reveal"
             onMouseEnter={handleHoverEnter}
             onMouseLeave={handleHoverLeave}
             onClick={() => handleOpenModal(
@@ -403,25 +403,23 @@ export default function App() {
               </div>
             )}
           >
-            <div className="md:w-5/12">
-              <span className="font-mono text-xs md:text-sm uppercase tracking-widest block opacity-60 mb-4">Edge & AI</span>
-              <h3 className="font-display text-4xl md:text-6xl font-bold uppercase leading-tight tracking-tight flex items-center gap-4">Cloud-Edge IDS <ArrowUpRight className="hidden md:inline-block opacity-0 -translate-y-2 -translate-x-2 group-hover:opacity-100 group-hover:translate-y-0 group-hover:translate-x-0 transition-all" /></h3>
+            <div>
+              <span className="font-mono text-xs uppercase tracking-widest block opacity-60 mb-3">Edge & AI</span>
+              <h3 className="font-display text-2xl md:text-3xl font-bold uppercase leading-tight tracking-tight flex items-start gap-3">Cloud-Edge IDS <ArrowUpRight className="flex-shrink-0 opacity-0 -translate-y-1 -translate-x-1 group-hover:opacity-100 group-hover:translate-y-0 group-hover:translate-x-0 transition-all" /></h3>
             </div>
-            <div className="md:w-6/12 flex flex-col justify-center mt-4 md:mt-0">
-              <p className="text-lg md:text-xl font-medium opacity-80 leading-relaxed mb-8">
-                Architected and deployed an edge auditor on Raspberry Pi hardware to manage AI workloads under resource constraints. Implemented a Random Forest classifier for real-time, localized network intrusion detection with secure cloud synchronization. <span className="opacity-50 italic text-sm">(Click for deep dive)</span>
-              </p>
-              <div className="flex flex-wrap gap-3">
-                {['Raspberry Pi', 'Random Forest', 'Cloud Architecture'].map(t => (
-                  <span key={t} className="px-4 py-2 border border-current rounded-full text-[10px] md:text-xs font-mono uppercase tracking-widest">{t}</span>
-                ))}
-              </div>
+            <p className="text-base md:text-lg font-medium opacity-80 leading-relaxed flex-grow">
+              Architected and deployed an edge auditor on Raspberry Pi hardware to manage AI workloads under resource constraints. Implemented a Random Forest classifier for real-time, localized network intrusion detection with secure cloud synchronization.
+            </p>
+            <div className="flex flex-wrap gap-2">
+              {['Raspberry Pi', 'Random Forest', 'Cloud Architecture'].map(t => (
+                <span key={t} className="px-3 py-1.5 border border-current rounded-full text-[10px] font-mono uppercase tracking-widest">{t}</span>
+              ))}
             </div>
           </div>
 
           {/* Project 2: OnionScope */}
           <div
-            className="snap-element py-24 md:py-32 border-b border-current flex flex-col md:flex-row gap-8 justify-between hover:pl-4 transition-all duration-300 cursor-pointer group reveal"
+            className="border-b-2 border-r-2 border-current px-6 md:px-10 py-10 md:py-14 flex flex-col gap-6 hover:bg-black/[0.04] transition-colors duration-300 cursor-pointer group reveal"
             onMouseEnter={handleHoverEnter}
             onMouseLeave={handleHoverLeave}
             onClick={() => handleOpenModal(
@@ -458,25 +456,23 @@ export default function App() {
               </div>
             )}
           >
-            <div className="md:w-5/12">
-              <span className="font-mono text-xs md:text-sm uppercase tracking-widest block opacity-60 mb-4">Cybersecurity</span>
-              <h3 className="font-display text-4xl md:text-6xl font-bold uppercase leading-tight tracking-tight flex items-center gap-4">OnionScope <ArrowUpRight className="hidden md:inline-block opacity-0 -translate-y-2 -translate-x-2 group-hover:opacity-100 group-hover:translate-y-0 group-hover:translate-x-0 transition-all" /></h3>
+            <div>
+              <span className="font-mono text-xs uppercase tracking-widest block opacity-60 mb-3">Cybersecurity</span>
+              <h3 className="font-display text-2xl md:text-3xl font-bold uppercase leading-tight tracking-tight flex items-start gap-3">OnionScope <ArrowUpRight className="flex-shrink-0 opacity-0 -translate-y-1 -translate-x-1 group-hover:opacity-100 group-hover:translate-y-0 group-hover:translate-x-0 transition-all" /></h3>
             </div>
-            <div className="md:w-6/12 flex flex-col justify-center mt-4 md:mt-0">
-              <p className="text-lg md:text-xl font-medium opacity-80 leading-relaxed mb-8">
-                A TOR forensic platform that correlates entry/exit traffic using a DeepCorr-inspired engine (cross-correlation, KL divergence, cosine similarity), enriched with live Onionoo relay data. FastAPI + React/D3.js, backed by Scapy PCAP analysis. <span className="opacity-50 italic text-sm">(Click for deep dive)</span>
-              </p>
-              <div className="flex flex-wrap gap-3">
-                {['FastAPI', 'Scapy', 'D3.js', 'Onionoo', 'TOR'].map(t => (
-                  <span key={t} className="px-4 py-2 border border-current rounded-full text-[10px] md:text-xs font-mono uppercase tracking-widest">{t}</span>
-                ))}
-              </div>
+            <p className="text-base md:text-lg font-medium opacity-80 leading-relaxed flex-grow">
+              A TOR forensic platform that correlates entry/exit traffic using a DeepCorr-inspired engine (cross-correlation, KL divergence, cosine similarity), enriched with live Onionoo relay data. FastAPI + React/D3.js, backed by Scapy PCAP analysis.
+            </p>
+            <div className="flex flex-wrap gap-2">
+              {['FastAPI', 'Scapy', 'D3.js', 'Onionoo', 'TOR'].map(t => (
+                <span key={t} className="px-3 py-1.5 border border-current rounded-full text-[10px] font-mono uppercase tracking-widest">{t}</span>
+              ))}
             </div>
           </div>
 
           {/* Project 3: DriveGuard Edge */}
           <div
-            className="snap-element py-24 md:py-32 border-b border-current flex flex-col md:flex-row gap-8 justify-between hover:pl-4 transition-all duration-300 cursor-pointer group reveal"
+            className="border-b-2 border-r-2 border-current px-6 md:px-10 py-10 md:py-14 flex flex-col gap-6 hover:bg-black/[0.04] transition-colors duration-300 cursor-pointer group reveal"
             onMouseEnter={handleHoverEnter}
             onMouseLeave={handleHoverLeave}
             onClick={() => handleOpenModal(
@@ -507,25 +503,23 @@ export default function App() {
               </div>
             )}
           >
-            <div className="md:w-5/12">
-              <span className="font-mono text-xs md:text-sm uppercase tracking-widest block opacity-60 mb-4">Edge & AI</span>
-              <h3 className="font-display text-4xl md:text-6xl font-bold uppercase leading-tight tracking-tight flex items-center gap-4">DriveGuard Edge <ArrowUpRight className="hidden md:inline-block opacity-0 -translate-y-2 -translate-x-2 group-hover:opacity-100 group-hover:translate-y-0 group-hover:translate-x-0 transition-all" /></h3>
+            <div>
+              <span className="font-mono text-xs uppercase tracking-widest block opacity-60 mb-3">Edge & AI</span>
+              <h3 className="font-display text-2xl md:text-3xl font-bold uppercase leading-tight tracking-tight flex items-start gap-3">DriveGuard Edge <ArrowUpRight className="flex-shrink-0 opacity-0 -translate-y-1 -translate-x-1 group-hover:opacity-100 group-hover:translate-y-0 group-hover:translate-x-0 transition-all" /></h3>
             </div>
-            <div className="md:w-6/12 flex flex-col justify-center mt-4 md:mt-0">
-              <p className="text-lg md:text-xl font-medium opacity-80 leading-relaxed mb-8">
-                Real-time driver fatigue and distraction detection for two-wheelers and commercial vehicles in India. Runs a quantized vision model on a Raspberry Pi 4 with sensor fusion, streaming alerts to the cloud. Built for Tata Technologies InnoVent-27. <span className="opacity-50 italic text-sm">(Click for deep dive)</span>
-              </p>
-              <div className="flex flex-wrap gap-3">
-                {['TFLite', 'MediaPipe', 'Raspberry Pi', 'AWS IoT', 'Edge AI'].map(t => (
-                  <span key={t} className="px-4 py-2 border border-current rounded-full text-[10px] md:text-xs font-mono uppercase tracking-widest">{t}</span>
-                ))}
-              </div>
+            <p className="text-base md:text-lg font-medium opacity-80 leading-relaxed flex-grow">
+              Real-time driver fatigue and distraction detection for two-wheelers and commercial vehicles in India. Runs a quantized vision model on a Raspberry Pi 4 with sensor fusion, streaming alerts to the cloud. Built for Tata Technologies InnoVent-27.
+            </p>
+            <div className="flex flex-wrap gap-2">
+              {['TFLite', 'MediaPipe', 'Raspberry Pi', 'AWS IoT', 'Edge AI'].map(t => (
+                <span key={t} className="px-3 py-1.5 border border-current rounded-full text-[10px] font-mono uppercase tracking-widest">{t}</span>
+              ))}
             </div>
           </div>
 
           {/* Project 4: VoiceShield AI */}
           <div
-            className="snap-element py-24 md:py-32 border-b border-current flex flex-col md:flex-row gap-8 justify-between hover:pl-4 transition-all duration-300 cursor-pointer group reveal"
+            className="border-b-2 border-r-2 border-current px-6 md:px-10 py-10 md:py-14 flex flex-col gap-6 hover:bg-black/[0.04] transition-colors duration-300 cursor-pointer group reveal"
             onMouseEnter={handleHoverEnter}
             onMouseLeave={handleHoverLeave}
             onClick={() => handleOpenModal(
@@ -549,25 +543,23 @@ export default function App() {
               </div>
             )}
           >
-            <div className="md:w-5/12">
-              <span className="font-mono text-xs md:text-sm uppercase tracking-widest block opacity-60 mb-4">Edge ML</span>
-              <h3 className="font-display text-4xl md:text-6xl font-bold uppercase leading-tight tracking-tight flex items-center gap-4">VoiceShield AI <ArrowUpRight className="hidden md:inline-block opacity-0 -translate-y-2 -translate-x-2 group-hover:opacity-100 group-hover:translate-y-0 group-hover:translate-x-0 transition-all" /></h3>
+            <div>
+              <span className="font-mono text-xs uppercase tracking-widest block opacity-60 mb-3">Edge ML</span>
+              <h3 className="font-display text-2xl md:text-3xl font-bold uppercase leading-tight tracking-tight flex items-start gap-3">VoiceShield AI <ArrowUpRight className="flex-shrink-0 opacity-0 -translate-y-1 -translate-x-1 group-hover:opacity-100 group-hover:translate-y-0 group-hover:translate-x-0 transition-all" /></h3>
             </div>
-            <div className="md:w-6/12 flex flex-col justify-center mt-4 md:mt-0">
-              <p className="text-lg md:text-xl font-medium opacity-80 leading-relaxed mb-8">
-                An ultra-light, speaker-conditioned keyword detection pipeline targeting sub-3M parameters and under 200ms edge inference. Phase 1 blueprint for the Samsung AX (ennovateX) 2026 hackathon. <span className="opacity-50 italic text-sm">(Click for deep dive)</span>
-              </p>
-              <div className="flex flex-wrap gap-3">
-                {['PyTorch', 'ECAPA-TDNN', 'Edge ML', 'KWS'].map(t => (
-                  <span key={t} className="px-4 py-2 border border-current rounded-full text-[10px] md:text-xs font-mono uppercase tracking-widest">{t}</span>
-                ))}
-              </div>
+            <p className="text-base md:text-lg font-medium opacity-80 leading-relaxed flex-grow">
+              An ultra-light, speaker-conditioned keyword detection pipeline targeting sub-3M parameters and under 200ms edge inference. Phase 1 blueprint for the Samsung AX (ennovateX) 2026 hackathon.
+            </p>
+            <div className="flex flex-wrap gap-2">
+              {['PyTorch', 'ECAPA-TDNN', 'Edge ML', 'KWS'].map(t => (
+                <span key={t} className="px-3 py-1.5 border border-current rounded-full text-[10px] font-mono uppercase tracking-widest">{t}</span>
+              ))}
             </div>
           </div>
 
           {/* Project 5: Federated Learning Demo */}
           <div
-            className="snap-element py-24 md:py-32 border-b border-current flex flex-col md:flex-row gap-8 justify-between hover:pl-4 transition-all duration-300 cursor-pointer group reveal"
+            className="border-b-2 border-r-2 border-current px-6 md:px-10 py-10 md:py-14 flex flex-col gap-6 hover:bg-black/[0.04] transition-colors duration-300 cursor-pointer group reveal"
             onMouseEnter={handleHoverEnter}
             onMouseLeave={handleHoverLeave}
             onClick={() => handleOpenModal(
@@ -591,25 +583,23 @@ export default function App() {
               </div>
             )}
           >
-            <div className="md:w-5/12">
-              <span className="font-mono text-xs md:text-sm uppercase tracking-widest block opacity-60 mb-4">Distributed ML</span>
-              <h3 className="font-display text-4xl md:text-6xl font-bold uppercase leading-tight tracking-tight flex items-center gap-4">Federated Learning Demo <ArrowUpRight className="hidden md:inline-block opacity-0 -translate-y-2 -translate-x-2 group-hover:opacity-100 group-hover:translate-y-0 group-hover:translate-x-0 transition-all" /></h3>
+            <div>
+              <span className="font-mono text-xs uppercase tracking-widest block opacity-60 mb-3">Distributed ML</span>
+              <h3 className="font-display text-2xl md:text-3xl font-bold uppercase leading-tight tracking-tight flex items-start gap-3">Federated Learning Demo <ArrowUpRight className="flex-shrink-0 opacity-0 -translate-y-1 -translate-x-1 group-hover:opacity-100 group-hover:translate-y-0 group-hover:translate-x-0 transition-all" /></h3>
             </div>
-            <div className="md:w-6/12 flex flex-col justify-center mt-4 md:mt-0">
-              <p className="text-lg md:text-xl font-medium opacity-80 leading-relaxed mb-8">
-                A federated learning pipeline using Flower and PyTorch that trains a shared model across distributed clients without centralizing data. Benchmarked across IID and non-IID data splits. <span className="opacity-50 italic text-sm">(Click for deep dive)</span>
-              </p>
-              <div className="flex flex-wrap gap-3">
-                {['Flower', 'PyTorch', 'Federated Learning'].map(t => (
-                  <span key={t} className="px-4 py-2 border border-current rounded-full text-[10px] md:text-xs font-mono uppercase tracking-widest">{t}</span>
-                ))}
-              </div>
+            <p className="text-base md:text-lg font-medium opacity-80 leading-relaxed flex-grow">
+              A federated learning pipeline using Flower and PyTorch that trains a shared model across distributed clients without centralizing data. Benchmarked across IID and non-IID data splits.
+            </p>
+            <div className="flex flex-wrap gap-2">
+              {['Flower', 'PyTorch', 'Federated Learning'].map(t => (
+                <span key={t} className="px-3 py-1.5 border border-current rounded-full text-[10px] font-mono uppercase tracking-widest">{t}</span>
+              ))}
             </div>
           </div>
 
           {/* Project 6: BRN-01 Burner Chat */}
           <div
-            className="snap-element py-24 md:py-32 border-b border-current flex flex-col md:flex-row gap-8 justify-between hover:pl-4 transition-all duration-300 cursor-pointer group reveal"
+            className="border-b-2 border-r-2 border-current px-6 md:px-10 py-10 md:py-14 flex flex-col gap-6 hover:bg-black/[0.04] transition-colors duration-300 cursor-pointer group reveal"
             onMouseEnter={handleHoverEnter}
             onMouseLeave={handleHoverLeave}
             onClick={() => handleOpenModal(
@@ -633,25 +623,23 @@ export default function App() {
               </div>
             )}
           >
-            <div className="md:w-5/12">
-              <span className="font-mono text-xs md:text-sm uppercase tracking-widest block opacity-60 mb-4">Full-Stack</span>
-              <h3 className="font-display text-4xl md:text-6xl font-bold uppercase leading-tight tracking-tight flex items-center gap-4">BRN-01 Burner Chat <ArrowUpRight className="hidden md:inline-block opacity-0 -translate-y-2 -translate-x-2 group-hover:opacity-100 group-hover:translate-y-0 group-hover:translate-x-0 transition-all" /></h3>
+            <div>
+              <span className="font-mono text-xs uppercase tracking-widest block opacity-60 mb-3">Full-Stack</span>
+              <h3 className="font-display text-2xl md:text-3xl font-bold uppercase leading-tight tracking-tight flex items-start gap-3">BRN-01 Burner Chat <ArrowUpRight className="flex-shrink-0 opacity-0 -translate-y-1 -translate-x-1 group-hover:opacity-100 group-hover:translate-y-0 group-hover:translate-x-0 transition-all" /></h3>
             </div>
-            <div className="md:w-6/12 flex flex-col justify-center mt-4 md:mt-0">
-              <p className="text-lg md:text-xl font-medium opacity-80 leading-relaxed mb-8">
-                A disappearing-message chat app with TTL-based rooms and real-time WebSocket messaging, built in the Teenage Engineering visual language. Containerized end-to-end. <span className="opacity-50 italic text-sm">(Click for deep dive)</span>
-              </p>
-              <div className="flex flex-wrap gap-3">
-                {['FastAPI', 'Redis', 'WebSocket', 'React', 'Docker'].map(t => (
-                  <span key={t} className="px-4 py-2 border border-current rounded-full text-[10px] md:text-xs font-mono uppercase tracking-widest">{t}</span>
-                ))}
-              </div>
+            <p className="text-base md:text-lg font-medium opacity-80 leading-relaxed flex-grow">
+              A disappearing-message chat app with TTL-based rooms and real-time WebSocket messaging, built in the Teenage Engineering visual language. Containerized end-to-end.
+            </p>
+            <div className="flex flex-wrap gap-2">
+              {['FastAPI', 'Redis', 'WebSocket', 'React', 'Docker'].map(t => (
+                <span key={t} className="px-3 py-1.5 border border-current rounded-full text-[10px] font-mono uppercase tracking-widest">{t}</span>
+              ))}
             </div>
           </div>
 
           {/* Project 7: FaceAuthOffline */}
           <div
-            className="snap-element py-24 md:py-32 border-b border-current flex flex-col md:flex-row gap-8 justify-between hover:pl-4 transition-all duration-300 cursor-pointer group reveal"
+            className="border-b-2 border-r-2 border-current px-6 md:px-10 py-10 md:py-14 flex flex-col gap-6 hover:bg-black/[0.04] transition-colors duration-300 cursor-pointer group reveal"
             onMouseEnter={handleHoverEnter}
             onMouseLeave={handleHoverLeave}
             onClick={() => handleOpenModal(
@@ -675,25 +663,23 @@ export default function App() {
               </div>
             )}
           >
-            <div className="md:w-5/12">
-              <span className="font-mono text-xs md:text-sm uppercase tracking-widest block opacity-60 mb-4">Mobile & ML</span>
-              <h3 className="font-display text-4xl md:text-6xl font-bold uppercase leading-tight tracking-tight flex items-center gap-4">FaceAuthOffline <ArrowUpRight className="hidden md:inline-block opacity-0 -translate-y-2 -translate-x-2 group-hover:opacity-100 group-hover:translate-y-0 group-hover:translate-x-0 transition-all" /></h3>
+            <div>
+              <span className="font-mono text-xs uppercase tracking-widest block opacity-60 mb-3">Mobile & ML</span>
+              <h3 className="font-display text-2xl md:text-3xl font-bold uppercase leading-tight tracking-tight flex items-start gap-3">FaceAuthOffline <ArrowUpRight className="flex-shrink-0 opacity-0 -translate-y-1 -translate-x-1 group-hover:opacity-100 group-hover:translate-y-0 group-hover:translate-x-0 transition-all" /></h3>
             </div>
-            <div className="md:w-6/12 flex flex-col justify-center mt-4 md:mt-0">
-              <p className="text-lg md:text-xl font-medium opacity-80 leading-relaxed mb-8">
-                An offline-first React Native facial authentication system with geometric liveness detection and on-device recognition — no network required at auth time. Built for Hackathon 7.0. <span className="opacity-50 italic text-sm">(Click for deep dive)</span>
-              </p>
-              <div className="flex flex-wrap gap-3">
-                {['React Native', 'TFLite', 'WatermelonDB', 'AWS'].map(t => (
-                  <span key={t} className="px-4 py-2 border border-current rounded-full text-[10px] md:text-xs font-mono uppercase tracking-widest">{t}</span>
-                ))}
-              </div>
+            <p className="text-base md:text-lg font-medium opacity-80 leading-relaxed flex-grow">
+              An offline-first React Native facial authentication system with geometric liveness detection and on-device recognition — no network required at auth time. Built for Hackathon 7.0.
+            </p>
+            <div className="flex flex-wrap gap-2">
+              {['React Native', 'TFLite', 'WatermelonDB', 'AWS'].map(t => (
+                <span key={t} className="px-3 py-1.5 border border-current rounded-full text-[10px] font-mono uppercase tracking-widest">{t}</span>
+              ))}
             </div>
           </div>
 
           {/* Project 8: Wear OS Health */}
           <div
-            className="snap-element py-24 md:py-32 border-b border-current flex flex-col md:flex-row gap-8 justify-between hover:pl-4 transition-all duration-300 cursor-pointer group reveal"
+            className="border-b-2 border-r-2 border-current px-6 md:px-10 py-10 md:py-14 flex flex-col gap-6 hover:bg-black/[0.04] transition-colors duration-300 cursor-pointer group reveal"
             onMouseEnter={handleHoverEnter}
             onMouseLeave={handleHoverLeave}
             onClick={() => handleOpenModal(
@@ -727,25 +713,23 @@ export default function App() {
               </div>
             )}
           >
-            <div className="md:w-5/12">
-              <span className="font-mono text-xs md:text-sm uppercase tracking-widest block opacity-60 mb-4">Mobile & IoT</span>
-              <h3 className="font-display text-4xl md:text-6xl font-bold uppercase leading-tight tracking-tight flex items-center gap-4">Wear OS Health <ArrowUpRight className="hidden md:inline-block opacity-0 -translate-y-2 -translate-x-2 group-hover:opacity-100 group-hover:translate-y-0 group-hover:translate-x-0 transition-all" /></h3>
+            <div>
+              <span className="font-mono text-xs uppercase tracking-widest block opacity-60 mb-3">Mobile & IoT</span>
+              <h3 className="font-display text-2xl md:text-3xl font-bold uppercase leading-tight tracking-tight flex items-start gap-3">Wear OS Health <ArrowUpRight className="flex-shrink-0 opacity-0 -translate-y-1 -translate-x-1 group-hover:opacity-100 group-hover:translate-y-0 group-hover:translate-x-0 transition-all" /></h3>
             </div>
-            <div className="md:w-6/12 flex flex-col justify-center mt-4 md:mt-0">
-              <p className="text-lg md:text-xl font-medium opacity-80 leading-relaxed mb-8">
-                Engineered a low-latency Bluetooth streaming protocol in Kotlin to transmit real-time vital signs from a Wear OS device to Android. Implemented CRC and Hamming Code error-correction algorithms from scratch, achieving 99.9% transmission reliability. <span className="opacity-50 italic text-sm">(Click for deep dive)</span>
-              </p>
-              <div className="flex flex-wrap gap-3">
-                {['Kotlin', 'Wear OS', 'Bluetooth', 'Algorithms'].map(t => (
-                  <span key={t} className="px-4 py-2 border border-current rounded-full text-[10px] md:text-xs font-mono uppercase tracking-widest">{t}</span>
-                ))}
-              </div>
+            <p className="text-base md:text-lg font-medium opacity-80 leading-relaxed flex-grow">
+              Engineered a low-latency Bluetooth streaming protocol in Kotlin to transmit real-time vital signs from a Wear OS device to Android. Implemented CRC and Hamming Code error-correction algorithms from scratch, achieving 99.9% transmission reliability.
+            </p>
+            <div className="flex flex-wrap gap-2">
+              {['Kotlin', 'Wear OS', 'Bluetooth', 'Algorithms'].map(t => (
+                <span key={t} className="px-3 py-1.5 border border-current rounded-full text-[10px] font-mono uppercase tracking-widest">{t}</span>
+              ))}
             </div>
           </div>
 
           {/* Project 9: AWS Inventory */}
           <div
-            className="snap-element py-24 md:py-32 border-b border-current flex flex-col md:flex-row gap-8 justify-between hover:pl-4 transition-all duration-300 cursor-pointer group reveal"
+            className="border-b-2 border-r-2 border-current px-6 md:px-10 py-10 md:py-14 flex flex-col gap-6 hover:bg-black/[0.04] transition-colors duration-300 cursor-pointer group reveal"
             onMouseEnter={handleHoverEnter}
             onMouseLeave={handleHoverLeave}
             onClick={() => handleOpenModal(
@@ -773,25 +757,23 @@ export default function App() {
               </div>
             )}
           >
-            <div className="md:w-5/12">
-              <span className="font-mono text-xs md:text-sm uppercase tracking-widest block opacity-60 mb-4">Full-Stack Cloud</span>
-              <h3 className="font-display text-4xl md:text-6xl font-bold uppercase leading-tight tracking-tight flex items-center gap-4">AWS Inventory <ArrowUpRight className="hidden md:inline-block opacity-0 -translate-y-2 -translate-x-2 group-hover:opacity-100 group-hover:translate-y-0 group-hover:translate-x-0 transition-all" /></h3>
+            <div>
+              <span className="font-mono text-xs uppercase tracking-widest block opacity-60 mb-3">Full-Stack Cloud</span>
+              <h3 className="font-display text-2xl md:text-3xl font-bold uppercase leading-tight tracking-tight flex items-start gap-3">AWS Inventory <ArrowUpRight className="flex-shrink-0 opacity-0 -translate-y-1 -translate-x-1 group-hover:opacity-100 group-hover:translate-y-0 group-hover:translate-x-0 transition-all" /></h3>
             </div>
-            <div className="md:w-6/12 flex flex-col justify-center mt-4 md:mt-0">
-              <p className="text-lg md:text-xl font-medium opacity-80 leading-relaxed mb-8">
-                Engineered and deployed a full-stack inventory management application on AWS using Flask and a cloud-hosted MSSQL database. Designed a normalized schema and strict validation logic that reduced data entry errors by 85%. <span className="opacity-50 italic text-sm">(Click for deep dive)</span>
-              </p>
-              <div className="flex flex-wrap gap-3">
-                {['AWS', 'Flask', 'MSSQL', 'Web App'].map(t => (
-                  <span key={t} className="px-4 py-2 border border-current rounded-full text-[10px] md:text-xs font-mono uppercase tracking-widest">{t}</span>
-                ))}
-              </div>
+            <p className="text-base md:text-lg font-medium opacity-80 leading-relaxed flex-grow">
+              Engineered and deployed a full-stack inventory management application on AWS using Flask and a cloud-hosted MSSQL database. Designed a normalized schema and strict validation logic that reduced data entry errors by 85%.
+            </p>
+            <div className="flex flex-wrap gap-2">
+              {['AWS', 'Flask', 'MSSQL', 'Web App'].map(t => (
+                <span key={t} className="px-3 py-1.5 border border-current rounded-full text-[10px] font-mono uppercase tracking-widest">{t}</span>
+              ))}
             </div>
           </div>
 
-          {/* Project 10: Retail Regression Engine — last card, no border-b */}
+          {/* Project 10: Retail Regression Engine */}
           <div
-            className="snap-element py-24 md:py-32 flex flex-col md:flex-row gap-8 justify-between hover:pl-4 transition-all duration-300 cursor-pointer group reveal"
+            className="border-b-2 border-r-2 border-current px-6 md:px-10 py-10 md:py-14 flex flex-col gap-6 hover:bg-black/[0.04] transition-colors duration-300 cursor-pointer group reveal"
             onMouseEnter={handleHoverEnter}
             onMouseLeave={handleHoverLeave}
             onClick={() => handleOpenModal(
@@ -826,19 +808,17 @@ export default function App() {
               </div>
             )}
           >
-            <div className="md:w-5/12">
-              <span className="font-mono text-xs md:text-sm uppercase tracking-widest block opacity-60 mb-4">ML & Applied AI</span>
-              <h3 className="font-display text-4xl md:text-6xl font-bold uppercase leading-tight tracking-tight flex items-center gap-4">Retail Regression Engine <ArrowUpRight className="hidden md:inline-block opacity-0 -translate-y-2 -translate-x-2 group-hover:opacity-100 group-hover:translate-y-0 group-hover:translate-x-0 transition-all" /></h3>
+            <div>
+              <span className="font-mono text-xs uppercase tracking-widest block opacity-60 mb-3">ML & Applied AI</span>
+              <h3 className="font-display text-2xl md:text-3xl font-bold uppercase leading-tight tracking-tight flex items-start gap-3">Retail Regression Engine <ArrowUpRight className="flex-shrink-0 opacity-0 -translate-y-1 -translate-x-1 group-hover:opacity-100 group-hover:translate-y-0 group-hover:translate-x-0 transition-all" /></h3>
             </div>
-            <div className="md:w-6/12 flex flex-col justify-center mt-4 md:mt-0">
-              <p className="text-lg md:text-xl font-medium opacity-80 leading-relaxed mb-8">
-                Developed an ML regression pipeline to predict Amazon product prices from unstructured text descriptions and metadata. Applied TF-IDF vectorization and SMAPE-optimized training to achieve 92% pricing accuracy across 15+ product categories. <span className="opacity-50 italic text-sm">(Click for deep dive)</span>
-              </p>
-              <div className="flex flex-wrap gap-3">
-                {['Python', 'Scikit-Learn', 'NLP', 'TF-IDF'].map(t => (
-                  <span key={t} className="px-4 py-2 border border-current rounded-full text-[10px] md:text-xs font-mono uppercase tracking-widest">{t}</span>
-                ))}
-              </div>
+            <p className="text-base md:text-lg font-medium opacity-80 leading-relaxed flex-grow">
+              Developed an ML regression pipeline to predict retail product prices from unstructured text descriptions and metadata. Applied TF-IDF vectorization and SMAPE-optimized training to achieve 92% pricing accuracy across 15+ product categories.
+            </p>
+            <div className="flex flex-wrap gap-2">
+              {['Python', 'Scikit-Learn', 'NLP', 'TF-IDF'].map(t => (
+                <span key={t} className="px-3 py-1.5 border border-current rounded-full text-[10px] font-mono uppercase tracking-widest">{t}</span>
+              ))}
             </div>
           </div>
 
