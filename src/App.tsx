@@ -747,7 +747,7 @@ export default function App() {
           <div className="py-12 border-t border-current/30">
             <span className="font-mono text-xs uppercase tracking-widest opacity-40 block mb-4">Other Work</span>
             <div className="flex flex-col md:flex-row flex-wrap gap-x-12 gap-y-2 font-mono text-sm opacity-50">
-              <span>Amazon Price Predictor — ML regression · Python · Scikit-Learn · TF-IDF</span>
+              <span>Retail Regression Engine — ML regression · Python · Scikit-Learn · TF-IDF</span>
               <span>AWS Inventory — Full-stack cloud app · Flask · MSSQL · AWS EC2</span>
             </div>
           </div>
