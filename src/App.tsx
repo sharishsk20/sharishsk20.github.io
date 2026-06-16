@@ -205,7 +205,7 @@ export default function App() {
       {modalContent && (
         <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-8 bg-black/80 backdrop-blur-md" onClick={handleCloseModal}>
           <div 
-            className="bg-[#F4F1EA] text-[#1C1B1A] rounded-[2rem] max-w-4xl w-full max-h-[85vh] flex flex-col relative shadow-2xl overscroll-none" 
+            className="bg-[#F4F1EA] text-[#1C1B1A] rounded-[2rem] max-w-4xl w-full max-h-[85vh] flex flex-col relative shadow-2xl overscroll-none overflow-hidden" 
             onClick={e => e.stopPropagation()}
             data-lenis-prevent
           >
