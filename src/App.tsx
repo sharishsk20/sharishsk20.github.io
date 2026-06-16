@@ -274,7 +274,7 @@ export default function App() {
               <h2 className="font-display text-4xl md:text-6xl font-bold uppercase tracking-tight mb-6 leading-none">Expertise<br/>& Context</h2>
               <p className="text-sm uppercase tracking-widest opacity-60 mb-12 flex flex-col gap-2">
                 <span>SRM Institute of Science and Technology</span>
-                <span>B.Tech-CSE '27 • 8.45 CGPA</span>
+                <span>B.Tech-CSE '27 • 8.68 CGPA</span>
               </p>
             </div>
             <div className="md:col-span-8 flex flex-col gap-8 md:gap-12 text-xl md:text-2xl font-medium leading-relaxed reveal">
@@ -365,11 +365,11 @@ export default function App() {
         </div>
 
         <div className="flex flex-col border-t-2 border-current px-6 md:px-12 max-w-7xl mx-auto w-full">
-          
-          {/* Project 1 */}
-          <div 
-            className="snap-element py-24 md:py-32 border-b border-current flex flex-col md:flex-row gap-8 justify-between hover:pl-4 transition-all duration-300 cursor-pointer group reveal" 
-            onMouseEnter={handleHoverEnter} 
+
+          {/* Project 1: Cloud-Edge IDS */}
+          <div
+            className="snap-element py-24 md:py-32 border-b border-current flex flex-col md:flex-row gap-8 justify-between hover:pl-4 transition-all duration-300 cursor-pointer group reveal"
+            onMouseEnter={handleHoverEnter}
             onMouseLeave={handleHoverLeave}
             onClick={() => handleOpenModal(
               "Cloud-Edge IDS",
@@ -401,7 +401,6 @@ export default function App() {
                   </ul>
                 </div>
               </div>
-
             )}
           >
             <div className="md:w-5/12">
@@ -420,109 +419,282 @@ export default function App() {
             </div>
           </div>
 
-          {/* Project 2 */}
-          <div 
-            className="snap-element py-24 md:py-32 border-b border-current flex flex-col md:flex-row gap-8 justify-between hover:pl-4 transition-all duration-300 cursor-pointer group reveal" 
-            onMouseEnter={handleHoverEnter} 
+          {/* Project 2: OnionScope */}
+          <div
+            className="snap-element py-24 md:py-32 border-b border-current flex flex-col md:flex-row gap-8 justify-between hover:pl-4 transition-all duration-300 cursor-pointer group reveal"
+            onMouseEnter={handleHoverEnter}
             onMouseLeave={handleHoverLeave}
             onClick={() => handleOpenModal(
-              "Project Unveil",
-              "Cybersecurity & Forensics",
+              "OnionScope",
+              "TOR Forensics & Traffic Correlation",
               <div className="space-y-8 opacity-90 leading-relaxed pt-2">
                 <div>
-                  <h4 className="font-bold text-xl mb-3 text-[#DE5D26]">1. TOR Forensic Framework & De-anonymization</h4>
-                  <p>Focused on traffic correlation and side-channel analysis rather than attempting to break TOR's encryption directly.</p>
+                  <h4 className="font-bold text-xl mb-3 text-[#DE5D26]">1. DeepCorr-Inspired Correlation Engine</h4>
+                  <p>Multi-metric engine linking TOR entry and exit flows without breaking encryption.</p>
                   <ul className="list-disc pl-6 mt-4 space-y-3 marker:text-black/50">
-                    <li><strong>Traffic Correlation:</strong> Implemented end-to-end traffic confirmation attacks — auditing timing patterns and packet sizes at both the Entry Guard and Exit Node to correlate users to destinations.</li>
-                    <li><strong>Stem Integration:</strong> Used the Stem library to programmatically interact with the TOR controller, monitoring circuit creation events, mapping relay consensus data, and attaching to active streams.</li>
-                    <li><strong>Protocol Leak Analysis:</strong> Identified how protocols like HTTP, DNS, and SSH leak identifying information before entering the TOR circuit — including DNS bypass vulnerabilities.</li>
+                    <li><strong>Statistical Correlation:</strong> Combined cross-correlation, KL divergence, and cosine similarity over packet timing and size distributions to score the likelihood that two flows belong to the same circuit.</li>
+                    <li><strong>Scapy PCAP Analysis:</strong> Parsed raw captures to extract inter-packet timing, burst patterns, and directional byte counts as the feature basis for correlation.</li>
                   </ul>
                 </div>
                 <div>
-                  <h4 className="font-bold text-xl mb-3 text-[#DE5D26]">2. Automated Data Processing Pipelines</h4>
-                  <p>Built a hybrid Python/Bash pipeline to handle high-volume network telemetry efficiently.</p>
+                  <h4 className="font-bold text-xl mb-3 text-[#DE5D26]">2. Live Relay Intelligence via Onionoo</h4>
+                  <p>Enriched captured circuits with real relay consensus data.</p>
                   <ul className="list-disc pl-6 mt-4 space-y-3 marker:text-black/50">
-                    <li><strong>Capture & Parse:</strong> Used Bash (tcpdump/tshark) for high-speed packet capture and Python as the intelligence layer to parse raw PCAPs, extract flow features, and transform data into structured JSON/CSV.</li>
-                    <li><strong>Producer-Consumer Pattern:</strong> Implemented a buffered ingestion pipeline to prevent data loss during high-traffic bursts, maintaining chain-of-custody integrity throughout.</li>
+                    <li><strong>Relay Mapping:</strong> Resolved observed hops to relay fingerprints, geolocation, and bandwidth weights to reconstruct probable circuit paths.</li>
+                    <li><strong>Forensic Records:</strong> Persisted findings to SQLite with timestamps and confidence scores for reproducible, auditable reports.</li>
                   </ul>
                 </div>
                 <div>
-                  <h4 className="font-bold text-xl mb-3 text-[#DE5D26]">3. Ethical Testbed & Forensic Reporting</h4>
-                  <p>Ran all experiments within a controlled local testbed environment to ensure ethical compliance.</p>
+                  <h4 className="font-bold text-xl mb-3 text-[#DE5D26]">3. Full-Stack Analysis Platform</h4>
+                  <p>Deployable tool, not a pile of scripts.</p>
                   <ul className="list-disc pl-6 mt-4 space-y-3 marker:text-black/50">
-                    <li><strong>Isolated Environment:</strong> Used a sandboxed TOR simulation environment rather than the live public network, ensuring no real users were affected.</li>
-                    <li><strong>Forensic Reports:</strong> Generated structured audit reports documenting circuit paths, relay fingerprints, and timestamps — formatted for use by digital investigators.</li>
+                    <li><strong>FastAPI Backend:</strong> Exposed correlation runs and relay lookups as REST endpoints over an async pipeline.</li>
+                    <li><strong>React + D3.js Frontend:</strong> Visualized circuit paths and correlation scores interactively so analysts can inspect candidate matches at a glance.</li>
                   </ul>
                 </div>
+                <a href="https://github.com/sharishsk20/onionscope" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 font-mono text-sm border-b border-[#DE5D26] text-[#DE5D26] hover:opacity-70 transition-opacity mt-2">
+                  GitHub: sharishsk20/onionscope <ArrowUpRight size={14} />
+                </a>
               </div>
             )}
           >
             <div className="md:w-5/12">
               <span className="font-mono text-xs md:text-sm uppercase tracking-widest block opacity-60 mb-4">Cybersecurity</span>
-              <h3 className="font-display text-4xl md:text-6xl font-bold uppercase leading-tight tracking-tight flex items-center gap-4">Project Unveil <ArrowUpRight className="hidden md:inline-block opacity-0 -translate-y-2 -translate-x-2 group-hover:opacity-100 group-hover:translate-y-0 group-hover:translate-x-0 transition-all" /></h3>
+              <h3 className="font-display text-4xl md:text-6xl font-bold uppercase leading-tight tracking-tight flex items-center gap-4">OnionScope <ArrowUpRight className="hidden md:inline-block opacity-0 -translate-y-2 -translate-x-2 group-hover:opacity-100 group-hover:translate-y-0 group-hover:translate-x-0 transition-all" /></h3>
             </div>
             <div className="md:w-6/12 flex flex-col justify-center mt-4 md:mt-0">
               <p className="text-lg md:text-xl font-medium opacity-80 leading-relaxed mb-8">
-                Built a forensic framework to audit and analyze TOR network traffic for de-anonymization. Developed automated Python and Bash pipelines to process high-volume network telemetry and identify protocol-level anomalies. <span className="opacity-50 italic text-sm">(Click for deep dive)</span>
+                A TOR forensic platform that correlates entry/exit traffic using a DeepCorr-inspired engine (cross-correlation, KL divergence, cosine similarity), enriched with live Onionoo relay data. FastAPI + React/D3.js, backed by Scapy PCAP analysis. <span className="opacity-50 italic text-sm">(Click for deep dive)</span>
               </p>
               <div className="flex flex-wrap gap-3">
-                {['Python', 'Bash Scripting', 'Network Protocols', 'TOR'].map(t => (
-                  <span key={t} className="px-4 py-2 border border-current rounded-full text-[10px] md:text-xs font-mono uppercase tracking-widest">{t}</span>
-                ))}
-              </div>
-            </div>
-          </div>
-          
-          {/* Project 3 */}
-          <div 
-            className="snap-element py-24 md:py-32 border-b border-current flex flex-col md:flex-row gap-8 justify-between hover:pl-4 transition-all duration-300 cursor-pointer group reveal" 
-            onMouseEnter={handleHoverEnter} 
-            onMouseLeave={handleHoverLeave}
-            onClick={() => handleOpenModal(
-              "AWS Inventory",
-              "Full-stack Cloud Architecture",
-              <div className="space-y-8 opacity-90 leading-relaxed pt-2">
-                <div>
-                  <h4 className="font-bold text-xl mb-3 text-[#DE5D26]">1. Full-Stack Architecture on AWS</h4>
-                  <p>Migrated a manual, error-prone inventory process to a cloud-native application built for reliability and scale.</p>
-                  <ul className="list-disc pl-6 mt-4 space-y-3 marker:text-black/50">
-                    <li><strong>Flask REST API:</strong> Built the backend using Flask, exposing RESTful endpoints for all CRUD operations. Used SQLAlchemy as the ORM to interface cleanly with the MSSQL database.</li>
-                    <li><strong>Dynamic Frontend:</strong> Developed a JavaScript dashboard with real-time search and filtering, and async form submissions to eliminate full-page reloads during high-volume data entry.</li>
-                    <li><strong>AWS Deployment:</strong> Deployed on AWS EC2 with an Application Load Balancer to ensure availability during peak operational hours.</li>
-                  </ul>
-                </div>
-                <div>
-                  <h4 className="font-bold text-xl mb-3 text-[#DE5D26]">2. MSSQL Schema Design & Data Integrity</h4>
-                  <p>Replaced unstructured spreadsheets with a fully normalized relational database, making data corruption structurally impossible.</p>
-                  <ul className="list-disc pl-6 mt-4 space-y-3 marker:text-black/50">
-                    <li><strong>Schema Design:</strong> Designed a normalized MSSQL schema with Primary/Foreign Key constraints and Stored Procedures, eliminating phantom inventory and duplicate entries at the database level.</li>
-                    <li><strong>Cloud RDS:</strong> Hosted the database on AWS RDS with automated backups, multi-AZ redundancy, and encrypted storage.</li>
-                    <li><strong>Validation Logic:</strong> Reduced data entry errors by 85% through strict frontend and backend validation — regex for SKUs, enforced dropdowns, and mandatory field checks.</li>
-                  </ul>
-                </div>
-              </div>
-            )}
-          >
-            <div className="md:w-5/12">
-              <span className="font-mono text-xs md:text-sm uppercase tracking-widest block opacity-60 mb-4">Full-stack Cloud</span>
-              <h3 className="font-display text-4xl md:text-6xl font-bold uppercase leading-tight tracking-tight flex items-center gap-4">AWS Inventory <ArrowUpRight className="hidden md:inline-block opacity-0 -translate-y-2 -translate-x-2 group-hover:opacity-100 group-hover:translate-y-0 group-hover:translate-x-0 transition-all" /></h3>
-            </div>
-            <div className="md:w-6/12 flex flex-col justify-center mt-4 md:mt-0">
-              <p className="text-lg md:text-xl font-medium opacity-80 leading-relaxed mb-8">
-                Engineered and deployed a full-stack inventory management application on AWS using Flask and a cloud-hosted MSSQL database. Designed a normalized schema and strict validation logic that reduced data entry errors by 85%. <span className="opacity-50 italic text-sm">(Click for deep dive)</span>
-              </p>
-              <div className="flex flex-wrap gap-3">
-                {['AWS', 'Flask', 'MSSQL', 'Web App'].map(t => (
+                {['FastAPI', 'Scapy', 'D3.js', 'Onionoo', 'TOR'].map(t => (
                   <span key={t} className="px-4 py-2 border border-current rounded-full text-[10px] md:text-xs font-mono uppercase tracking-widest">{t}</span>
                 ))}
               </div>
             </div>
           </div>
 
-          {/* Project 4 */}
-          <div 
-            className="snap-element py-24 md:py-32 border-b border-current flex flex-col md:flex-row gap-8 justify-between hover:pl-4 transition-all duration-300 cursor-pointer group reveal" 
-            onMouseEnter={handleHoverEnter} 
+          {/* Project 3: DriveGuard Edge */}
+          <div
+            className="snap-element py-24 md:py-32 border-b border-current flex flex-col md:flex-row gap-8 justify-between hover:pl-4 transition-all duration-300 cursor-pointer group reveal"
+            onMouseEnter={handleHoverEnter}
+            onMouseLeave={handleHoverLeave}
+            onClick={() => handleOpenModal(
+              "DriveGuard Edge",
+              "Real-Time Edge AI for Road Safety",
+              <div className="space-y-8 opacity-90 leading-relaxed pt-2">
+                <p className="font-mono text-xs uppercase tracking-widest opacity-50">Team of 4 · Tata InnoVent-27</p>
+                <div>
+                  <h4 className="font-bold text-xl mb-3 text-[#DE5D26]">1. On-Device Vision Pipeline</h4>
+                  <ul className="list-disc pl-6 mt-4 space-y-3 marker:text-black/50">
+                    <li><strong>Quantized Inference:</strong> TFLite INT8 quantized MobileNetV3-Small for fatigue/distraction classification within the Pi 4's compute and thermal budget.</li>
+                    <li><strong>Facial Landmarking:</strong> MediaPipe Face Mesh + OpenCV to track eye and head state (drowsiness, gaze-off-road) frame by frame.</li>
+                  </ul>
+                </div>
+                <div>
+                  <h4 className="font-bold text-xl mb-3 text-[#DE5D26]">2. Sensor Fusion & Stability</h4>
+                  <ul className="list-disc pl-6 mt-4 space-y-3 marker:text-black/50">
+                    <li><strong>Kalman Filter Fusion:</strong> Fused camera-derived state with motion sensor data via a Kalman filter to suppress false positives from road vibration and lighting changes.</li>
+                  </ul>
+                </div>
+                <div>
+                  <h4 className="font-bold text-xl mb-3 text-[#DE5D26]">3. Edge-to-Cloud Architecture</h4>
+                  <ul className="list-disc pl-6 mt-4 space-y-3 marker:text-black/50">
+                    <li><strong>FastAPI + React:</strong> Local FastAPI service for inference orchestration; React dashboard for live status.</li>
+                    <li><strong>AWS IoT Core:</strong> Streamed alerts and telemetry to AWS IoT Core for fleet-level monitoring.</li>
+                  </ul>
+                </div>
+              </div>
+            )}
+          >
+            <div className="md:w-5/12">
+              <span className="font-mono text-xs md:text-sm uppercase tracking-widest block opacity-60 mb-4">Edge & AI</span>
+              <h3 className="font-display text-4xl md:text-6xl font-bold uppercase leading-tight tracking-tight flex items-center gap-4">DriveGuard Edge <ArrowUpRight className="hidden md:inline-block opacity-0 -translate-y-2 -translate-x-2 group-hover:opacity-100 group-hover:translate-y-0 group-hover:translate-x-0 transition-all" /></h3>
+            </div>
+            <div className="md:w-6/12 flex flex-col justify-center mt-4 md:mt-0">
+              <p className="text-lg md:text-xl font-medium opacity-80 leading-relaxed mb-8">
+                Real-time driver fatigue and distraction detection for two-wheelers and commercial vehicles in India. Runs a quantized vision model on a Raspberry Pi 4 with sensor fusion, streaming alerts to the cloud. Built for Tata Technologies InnoVent-27. <span className="opacity-50 italic text-sm">(Click for deep dive)</span>
+              </p>
+              <div className="flex flex-wrap gap-3">
+                {['TFLite', 'MediaPipe', 'Raspberry Pi', 'AWS IoT', 'Edge AI'].map(t => (
+                  <span key={t} className="px-4 py-2 border border-current rounded-full text-[10px] md:text-xs font-mono uppercase tracking-widest">{t}</span>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Project 4: VoiceShield AI */}
+          <div
+            className="snap-element py-24 md:py-32 border-b border-current flex flex-col md:flex-row gap-8 justify-between hover:pl-4 transition-all duration-300 cursor-pointer group reveal"
+            onMouseEnter={handleHoverEnter}
+            onMouseLeave={handleHoverLeave}
+            onClick={() => handleOpenModal(
+              "VoiceShield AI",
+              "Speaker-Specific Keyword Spotting",
+              <div className="space-y-8 opacity-90 leading-relaxed pt-2">
+                <div>
+                  <h4 className="font-bold text-xl mb-3 text-[#DE5D26]">1. Speaker-Conditioned Detection</h4>
+                  <ul className="list-disc pl-6 mt-4 space-y-3 marker:text-black/50">
+                    <li><strong>ECAPA-TDNN (Pruned):</strong> Pruned ECAPA-TDNN speaker encoder to extract a compact speaker embedding on-device.</li>
+                    <li><strong>FiLM-Conditioned TCN:</strong> A temporal convolutional network conditioned via FiLM layers on the speaker embedding, so the model only fires on the target speaker's keywords.</li>
+                  </ul>
+                </div>
+                <div>
+                  <h4 className="font-bold text-xl mb-3 text-[#DE5D26]">2. Edge Constraints</h4>
+                  <ul className="list-disc pl-6 mt-4 space-y-3 marker:text-black/50">
+                    <li><strong>Sub-3M Parameters:</strong> Architected the full pipeline to stay under 3M params for on-device deployment.</li>
+                    <li><strong>&lt;200ms Latency:</strong> Targeted sub-200ms inference for responsive, always-on wake-word behavior.</li>
+                  </ul>
+                </div>
+              </div>
+            )}
+          >
+            <div className="md:w-5/12">
+              <span className="font-mono text-xs md:text-sm uppercase tracking-widest block opacity-60 mb-4">Edge ML</span>
+              <h3 className="font-display text-4xl md:text-6xl font-bold uppercase leading-tight tracking-tight flex items-center gap-4">VoiceShield AI <ArrowUpRight className="hidden md:inline-block opacity-0 -translate-y-2 -translate-x-2 group-hover:opacity-100 group-hover:translate-y-0 group-hover:translate-x-0 transition-all" /></h3>
+            </div>
+            <div className="md:w-6/12 flex flex-col justify-center mt-4 md:mt-0">
+              <p className="text-lg md:text-xl font-medium opacity-80 leading-relaxed mb-8">
+                An ultra-light, speaker-conditioned keyword detection pipeline targeting sub-3M parameters and under 200ms edge inference. Phase 1 blueprint for the Samsung AX (ennovateX) 2026 hackathon. <span className="opacity-50 italic text-sm">(Click for deep dive)</span>
+              </p>
+              <div className="flex flex-wrap gap-3">
+                {['PyTorch', 'ECAPA-TDNN', 'Edge ML', 'KWS'].map(t => (
+                  <span key={t} className="px-4 py-2 border border-current rounded-full text-[10px] md:text-xs font-mono uppercase tracking-widest">{t}</span>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Project 5: Federated Learning Demo */}
+          <div
+            className="snap-element py-24 md:py-32 border-b border-current flex flex-col md:flex-row gap-8 justify-between hover:pl-4 transition-all duration-300 cursor-pointer group reveal"
+            onMouseEnter={handleHoverEnter}
+            onMouseLeave={handleHoverLeave}
+            onClick={() => handleOpenModal(
+              "Federated Learning Demo",
+              "Privacy-Preserving Model Training",
+              <div className="space-y-8 opacity-90 leading-relaxed pt-2">
+                <div>
+                  <h4 className="font-bold text-xl mb-3 text-[#DE5D26]">1. Federated Orchestration</h4>
+                  <ul className="list-disc pl-6 mt-4 space-y-3 marker:text-black/50">
+                    <li><strong>Flower (flwr 1.30):</strong> Coordinated a central server and multiple clients, aggregating model updates with FedAvg over 12 communication rounds.</li>
+                    <li><strong>PyTorch Models:</strong> Local training loops on each client; only weights, never raw data, left the client.</li>
+                  </ul>
+                </div>
+                <div>
+                  <h4 className="font-bold text-xl mb-3 text-[#DE5D26]">2. IID vs Non-IID Benchmarking</h4>
+                  <ul className="list-disc pl-6 mt-4 space-y-3 marker:text-black/50">
+                    <li><strong>Synthetic Data:</strong> Generated synthetic Gaussian-cluster datasets to control the data distribution across clients.</li>
+                    <li><strong>Results:</strong> ~98% accuracy under IID splits and ~97% under non-IID splits, demonstrating robustness to heterogeneous client data.</li>
+                  </ul>
+                </div>
+              </div>
+            )}
+          >
+            <div className="md:w-5/12">
+              <span className="font-mono text-xs md:text-sm uppercase tracking-widest block opacity-60 mb-4">Distributed ML</span>
+              <h3 className="font-display text-4xl md:text-6xl font-bold uppercase leading-tight tracking-tight flex items-center gap-4">Federated Learning Demo <ArrowUpRight className="hidden md:inline-block opacity-0 -translate-y-2 -translate-x-2 group-hover:opacity-100 group-hover:translate-y-0 group-hover:translate-x-0 transition-all" /></h3>
+            </div>
+            <div className="md:w-6/12 flex flex-col justify-center mt-4 md:mt-0">
+              <p className="text-lg md:text-xl font-medium opacity-80 leading-relaxed mb-8">
+                A federated learning pipeline using Flower and PyTorch that trains a shared model across distributed clients without centralizing data. Benchmarked across IID and non-IID data splits. <span className="opacity-50 italic text-sm">(Click for deep dive)</span>
+              </p>
+              <div className="flex flex-wrap gap-3">
+                {['Flower', 'PyTorch', 'Federated Learning'].map(t => (
+                  <span key={t} className="px-4 py-2 border border-current rounded-full text-[10px] md:text-xs font-mono uppercase tracking-widest">{t}</span>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Project 6: BRN-01 Burner Chat */}
+          <div
+            className="snap-element py-24 md:py-32 border-b border-current flex flex-col md:flex-row gap-8 justify-between hover:pl-4 transition-all duration-300 cursor-pointer group reveal"
+            onMouseEnter={handleHoverEnter}
+            onMouseLeave={handleHoverLeave}
+            onClick={() => handleOpenModal(
+              "BRN-01 Burner Chat",
+              "Ephemeral Real-Time Chat",
+              <div className="space-y-8 opacity-90 leading-relaxed pt-2">
+                <div>
+                  <h4 className="font-bold text-xl mb-3 text-[#DE5D26]">1. Ephemeral Architecture</h4>
+                  <ul className="list-disc pl-6 mt-4 space-y-3 marker:text-black/50">
+                    <li><strong>Redis TTL Rooms:</strong> Rooms and messages stored in Redis with TTL expiry, so conversations self-destruct with no persistent history.</li>
+                    <li><strong>WebSocket Layer:</strong> Real-time bidirectional messaging over WebSockets via a FastAPI backend.</li>
+                  </ul>
+                </div>
+                <div>
+                  <h4 className="font-bold text-xl mb-3 text-[#DE5D26]">2. Frontend & Deployment</h4>
+                  <ul className="list-disc pl-6 mt-4 space-y-3 marker:text-black/50">
+                    <li><strong>React / Vite:</strong> A fast SPA frontend in the TE aesthetic (near-black, monospace, orange accents).</li>
+                    <li><strong>Nginx + Docker Compose:</strong> Reverse-proxied and fully containerized for one-command deployment.</li>
+                  </ul>
+                </div>
+              </div>
+            )}
+          >
+            <div className="md:w-5/12">
+              <span className="font-mono text-xs md:text-sm uppercase tracking-widest block opacity-60 mb-4">Full-Stack</span>
+              <h3 className="font-display text-4xl md:text-6xl font-bold uppercase leading-tight tracking-tight flex items-center gap-4">BRN-01 Burner Chat <ArrowUpRight className="hidden md:inline-block opacity-0 -translate-y-2 -translate-x-2 group-hover:opacity-100 group-hover:translate-y-0 group-hover:translate-x-0 transition-all" /></h3>
+            </div>
+            <div className="md:w-6/12 flex flex-col justify-center mt-4 md:mt-0">
+              <p className="text-lg md:text-xl font-medium opacity-80 leading-relaxed mb-8">
+                A disappearing-message chat app with TTL-based rooms and real-time WebSocket messaging, built in the Teenage Engineering visual language. Containerized end-to-end. <span className="opacity-50 italic text-sm">(Click for deep dive)</span>
+              </p>
+              <div className="flex flex-wrap gap-3">
+                {['FastAPI', 'Redis', 'WebSocket', 'React', 'Docker'].map(t => (
+                  <span key={t} className="px-4 py-2 border border-current rounded-full text-[10px] md:text-xs font-mono uppercase tracking-widest">{t}</span>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Project 7: FaceAuthOffline */}
+          <div
+            className="snap-element py-24 md:py-32 border-b border-current flex flex-col md:flex-row gap-8 justify-between hover:pl-4 transition-all duration-300 cursor-pointer group reveal"
+            onMouseEnter={handleHoverEnter}
+            onMouseLeave={handleHoverLeave}
+            onClick={() => handleOpenModal(
+              "FaceAuthOffline",
+              "On-Device Face Auth & Liveness",
+              <div className="space-y-8 opacity-90 leading-relaxed pt-2">
+                <div>
+                  <h4 className="font-bold text-xl mb-3 text-[#DE5D26]">1. On-Device Recognition</h4>
+                  <ul className="list-disc pl-6 mt-4 space-y-3 marker:text-black/50">
+                    <li><strong>MobileFaceNet (INT8):</strong> TFLite MobileFaceNet INT8 for face embedding and matching entirely on-device.</li>
+                    <li><strong>Geometric Liveness:</strong> EAR / MAR / Yaw geometric checks to defeat photo/replay spoofing without a server.</li>
+                  </ul>
+                </div>
+                <div>
+                  <h4 className="font-bold text-xl mb-3 text-[#DE5D26]">2. Secure Offline Storage & Sync</h4>
+                  <ul className="list-disc pl-6 mt-4 space-y-3 marker:text-black/50">
+                    <li><strong>Encrypted Local DB:</strong> WatermelonDB with AES-256 encryption for offline credential storage.</li>
+                    <li><strong>Sync-and-Purge:</strong> Synced to AWS when connectivity returned, then purged local sensitive data.</li>
+                  </ul>
+                </div>
+              </div>
+            )}
+          >
+            <div className="md:w-5/12">
+              <span className="font-mono text-xs md:text-sm uppercase tracking-widest block opacity-60 mb-4">Mobile & ML</span>
+              <h3 className="font-display text-4xl md:text-6xl font-bold uppercase leading-tight tracking-tight flex items-center gap-4">FaceAuthOffline <ArrowUpRight className="hidden md:inline-block opacity-0 -translate-y-2 -translate-x-2 group-hover:opacity-100 group-hover:translate-y-0 group-hover:translate-x-0 transition-all" /></h3>
+            </div>
+            <div className="md:w-6/12 flex flex-col justify-center mt-4 md:mt-0">
+              <p className="text-lg md:text-xl font-medium opacity-80 leading-relaxed mb-8">
+                An offline-first React Native facial authentication system with geometric liveness detection and on-device recognition — no network required at auth time. Built for Hackathon 7.0. <span className="opacity-50 italic text-sm">(Click for deep dive)</span>
+              </p>
+              <div className="flex flex-wrap gap-3">
+                {['React Native', 'TFLite', 'WatermelonDB', 'AWS'].map(t => (
+                  <span key={t} className="px-4 py-2 border border-current rounded-full text-[10px] md:text-xs font-mono uppercase tracking-widest">{t}</span>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Project 8: Wear OS Health — last card, no border-b */}
+          <div
+            className="snap-element py-24 md:py-32 flex flex-col md:flex-row gap-8 justify-between hover:pl-4 transition-all duration-300 cursor-pointer group reveal"
+            onMouseEnter={handleHoverEnter}
             onMouseLeave={handleHoverLeave}
             onClick={() => handleOpenModal(
               "Wear OS Health",
@@ -571,56 +743,12 @@ export default function App() {
             </div>
           </div>
 
-          {/* Project 5 (NEW) */}
-          <div 
-            className="snap-element py-24 md:py-32 flex flex-col md:flex-row gap-8 justify-between hover:pl-4 transition-all duration-300 cursor-pointer group reveal" 
-            onMouseEnter={handleHoverEnter} 
-            onMouseLeave={handleHoverLeave}
-            onClick={() => handleOpenModal(
-              "Price Prediction Model",
-              "Machine Learning & NLP",
-              <div className="space-y-8 opacity-90 leading-relaxed pt-2">
-                <div>
-                  <h4 className="font-bold text-xl mb-3 text-[#DE5D26]">1. NLP-Driven Feature Extraction</h4>
-                  <p>Treated unstructured product descriptions as a primary signal rather than relying solely on categorical metadata.</p>
-                  <ul className="list-disc pl-6 mt-4 space-y-3 marker:text-black/50">
-                    <li><strong>TF-IDF Vectorization:</strong> Applied TF-IDF to convert raw product descriptions into numerical feature vectors, allowing the model to recognize that terms like "OLED," "Leica-engineered," or "Premium" carry significant price weight.</li>
-                    <li><strong>Feature Engineering:</strong> Extracted additional signals including description length, brand tier, and presence of keywords like "Warranty" or "Authentic" to build a rich multi-dimensional feature set.</li>
-                  </ul>
-                </div>
-                <div>
-                  <h4 className="font-bold text-xl mb-3 text-[#DE5D26]">2. SMAPE-Optimized Training</h4>
-                  <p>Chose SMAPE as the evaluation metric to handle the massive price variance across product categories fairly.</p>
-                  <ul className="list-disc pl-6 mt-4 space-y-3 marker:text-black/50">
-                    <li><strong>SMAPE:</strong> Optimized for Symmetric Mean Absolute Percentage Error so the model was penalized proportionally — a $10 error on a $15 product is treated as far worse than the same error on a $1,500 laptop.</li>
-                    <li><strong>Log Transformation:</strong> Applied log(y) to the target price variable to stabilize variance and improve regression convergence across heavily skewed pricing distributions.</li>
-                  </ul>
-                </div>
-                <div>
-                  <h4 className="font-bold text-xl mb-3 text-[#DE5D26]">3. Robust Pipeline & Outlier Handling</h4>
-                  <p>Built a clean, leakage-free ML pipeline to handle the noise inherent in real-world e-commerce data.</p>
-                  <ul className="list-disc pl-6 mt-4 space-y-3 marker:text-black/50">
-                    <li><strong>Outlier Removal:</strong> Applied IQR filtering and Z-score analysis to prune anomalous price points that would have skewed the regression line away from the true distribution.</li>
-                    <li><strong>Leakage-Free Design:</strong> Automated feature scaling and categorical encoding with strict train/test separation to guarantee zero data leakage between pipeline stages.</li>
-                    <li><strong>Result:</strong> Achieved 92% pricing accuracy across 15+ product categories using SMAPE-optimized regression combined with NLP-based feature extraction.</li>
-                  </ul>
-                </div>
-              </div>
-            )}
-          >
-            <div className="md:w-5/12">
-              <span className="font-mono text-xs md:text-sm uppercase tracking-widest block opacity-60 mb-4">ML & Applied AI</span>
-              <h3 className="font-display text-4xl md:text-6xl font-bold uppercase leading-tight tracking-tight flex items-center gap-4">Amazon Price Predictor <ArrowUpRight className="hidden md:inline-block opacity-0 -translate-y-2 -translate-x-2 group-hover:opacity-100 group-hover:translate-y-0 group-hover:translate-x-0 transition-all" /></h3>
-            </div>
-            <div className="md:w-6/12 flex flex-col justify-center mt-4 md:mt-0">
-              <p className="text-lg md:text-xl font-medium opacity-80 leading-relaxed mb-8">
-                Developed an ML regression pipeline to predict Amazon product prices from unstructured text descriptions and metadata. Applied TF-IDF vectorization and SMAPE-optimized training to achieve 92% pricing accuracy across 15+ product categories. <span className="opacity-50 italic text-sm">(Click for deep dive)</span>
-              </p>
-              <div className="flex flex-wrap gap-3">
-                {['Python', 'Scikit-Learn', 'NLP', 'TF-IDF'].map(t => (
-                  <span key={t} className="px-4 py-2 border border-current rounded-full text-[10px] md:text-xs font-mono uppercase tracking-widest">{t}</span>
-                ))}
-              </div>
+          {/* Other Work — compact strip */}
+          <div className="py-12 border-t border-current/30">
+            <span className="font-mono text-xs uppercase tracking-widest opacity-40 block mb-4">Other Work</span>
+            <div className="flex flex-col md:flex-row flex-wrap gap-x-12 gap-y-2 font-mono text-sm opacity-50">
+              <span>Amazon Price Predictor — ML regression · Python · Scikit-Learn · TF-IDF</span>
+              <span>AWS Inventory — Full-stack cloud app · Flask · MSSQL · AWS EC2</span>
             </div>
           </div>
 
@@ -653,7 +781,11 @@ export default function App() {
           </a>
         </div>
 
-        <div className="max-w-7xl mx-auto w-full flex flex-col md:flex-row justify-between items-center z-10 border-t border-current pt-8 mt-12 gap-8 md:gap-0">
+        <p className="font-mono text-xs opacity-40 z-10 text-center px-4">
+          Open Source: Contributed Google-style docstrings to the <a href="https://github.com/collective/icalendar/issues/1072" target="_blank" rel="noreferrer" className="border-b border-current hover:opacity-70 transition-opacity">icalendar</a> Python library (issue #1072).
+        </p>
+
+        <div className="max-w-7xl mx-auto w-full flex flex-col md:flex-row justify-between items-center z-10 border-t border-current pt-8 mt-8 gap-8 md:gap-0">
           <div className="font-mono text-sm uppercase tracking-widest">
             © {new Date().getFullYear()} Sharish SK
           </div>
