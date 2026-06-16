@@ -400,6 +400,16 @@ export default function App() {
                     <li><strong>Federated Retraining:</strong> Aggregated anonymized edge telemetry periodically to retrain the model in the cloud and push updated weights back to the Pi, enabling the system to adapt to new attack patterns over time.</li>
                   </ul>
                 </div>
+                <div className="pt-4 border-t border-black/10 mt-6">
+                  <a
+                    href="https://github.com/sharishsk20/cloud-intrusion-detection-system"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline-flex items-center gap-2 px-4 py-2 border border-current rounded-full font-mono text-xs md:text-sm uppercase tracking-widest hover:bg-[#1C1B1A] hover:text-[#F4F1EA] transition-colors"
+                  >
+                    <Github size={16} /> GitHub Repository <ArrowUpRight size={14} />
+                  </a>
+                </div>
               </div>
             )}
           >
@@ -450,9 +460,16 @@ export default function App() {
                     <li><strong>React + D3.js Frontend:</strong> Visualized circuit paths and correlation scores interactively so analysts can inspect candidate matches at a glance.</li>
                   </ul>
                 </div>
-                <a href="https://github.com/sharishsk20/onionscope" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 font-mono text-sm border-b border-[#DE5D26] text-[#DE5D26] hover:opacity-70 transition-opacity mt-2">
-                  GitHub: sharishsk20/onionscope <ArrowUpRight size={14} />
-                </a>
+                <div className="pt-4 border-t border-black/10 mt-6">
+                  <a
+                    href="https://github.com/sharishsk20/onionscope"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline-flex items-center gap-2 px-4 py-2 border border-current rounded-full font-mono text-xs md:text-sm uppercase tracking-widest hover:bg-[#1C1B1A] hover:text-[#F4F1EA] transition-colors"
+                  >
+                    <Github size={16} /> GitHub Repository <ArrowUpRight size={14} />
+                  </a>
+                </div>
               </div>
             )}
           >
@@ -532,6 +549,16 @@ export default function App() {
                     <li><strong>Synthetic Data:</strong> Generated synthetic Gaussian-cluster datasets to control the data distribution across clients.</li>
                     <li><strong>Results:</strong> ~98% accuracy under IID splits and ~97% under non-IID splits, demonstrating robustness to heterogeneous client data.</li>
                   </ul>
+                </div>
+                <div className="pt-4 border-t border-black/10 mt-6">
+                  <a
+                    href="https://github.com/sharishsk20/federated-learning"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline-flex items-center gap-2 px-4 py-2 border border-current rounded-full font-mono text-xs md:text-sm uppercase tracking-widest hover:bg-[#1C1B1A] hover:text-[#F4F1EA] transition-colors"
+                  >
+                    <Github size={16} /> GitHub Repository <ArrowUpRight size={14} />
+                  </a>
                 </div>
               </div>
             )}
@@ -757,6 +784,16 @@ export default function App() {
                     <li><strong>Leakage-Free Design:</strong> Automated feature scaling and categorical encoding with strict train/test separation to guarantee zero data leakage between pipeline stages.</li>
                     <li><strong>Result:</strong> Achieved 92% pricing accuracy across 15+ product categories using SMAPE-optimized regression combined with NLP-based feature extraction.</li>
                   </ul>
+                </div>
+                <div className="pt-4 border-t border-black/10 mt-6">
+                  <a
+                    href="https://github.com/sharishsk20/Retail-Regression-Engine"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline-flex items-center gap-2 px-4 py-2 border border-current rounded-full font-mono text-xs md:text-sm uppercase tracking-widest hover:bg-[#1C1B1A] hover:text-[#F4F1EA] transition-colors"
+                  >
+                    <Github size={16} /> GitHub Repository <ArrowUpRight size={14} />
+                  </a>
                 </div>
               </div>
             )}
