@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Lenis from 'lenis';
@@ -14,9 +14,10 @@ export default function App() {
   const containerRef = useRef<HTMLDivElement>(null);
   const heroRef = useRef<HTMLDivElement>(null);
   const lenisRef = useRef<Lenis | null>(null);
+  const modalRef = useRef<HTMLDivElement>(null);
 
   // Initialize smooth scrolling and cursor
-  useEffect(() => {
+  useLayoutEffect(() => {
     const mobile = window.innerWidth < 768;
     const reduceQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
 
@@ -201,11 +202,52 @@ export default function App() {
 
   useEffect(() => {
     if (!modalContent) return;
+
+    const node = modalRef.current;
+    const previouslyFocused = document.activeElement as HTMLElement | null;
+    node?.focus();
+
+    // Annotated as string so TS uses the generic querySelectorAll overload
+    // rather than trying to parse the literal into an element type.
+    const FOCUSABLE: string = 'a[href], button:not([disabled]), input, select, textarea, [tabindex]:not([tabindex="-1"])';
+
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') handleCloseModal();
+      if (e.key === 'Escape') {
+        handleCloseModal();
+        return;
+      }
+      if (e.key !== 'Tab' || !node) return;
+
+      const items: HTMLElement[] = [];
+      node.querySelectorAll<HTMLElement>(FOCUSABLE).forEach(el => {
+        // getClientRects is empty for anything display:none or collapsed,
+        // which keeps hidden controls out of the tab cycle.
+        if (el.getClientRects().length > 0) items.push(el);
+      });
+      if (items.length === 0) {
+        e.preventDefault();
+        return;
+      }
+
+      const first = items[0];
+      const last = items[items.length - 1];
+      const active = document.activeElement;
+
+      if (e.shiftKey && (active === first || active === node)) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && active === last) {
+        e.preventDefault();
+        first.focus();
+      }
     };
+
     window.addEventListener('keydown', onKey);
-    return () => window.removeEventListener('keydown', onKey);
+    return () => {
+      window.removeEventListener('keydown', onKey);
+      // Send focus back where it came from, not to the top of the document.
+      previouslyFocused?.focus();
+    };
   }, [modalContent]);
 
   const handleHoverEnter = () => setCursorVariant('hovering');
@@ -237,21 +279,28 @@ export default function App() {
       {modalContent && (
         <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-8 bg-black/80 backdrop-blur-md" onClick={handleCloseModal}>
           <div 
-            className="bg-[#F4F1EA] text-[#1C1B1A] rounded-[2rem] max-w-4xl w-full max-h-[85vh] flex flex-col relative shadow-2xl overscroll-none overflow-hidden" 
+            ref={modalRef}
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="modal-title"
+            tabIndex={-1}
+            className="bg-[#F4F1EA] text-[#1C1B1A] rounded-[2rem] max-w-4xl w-full max-h-[85vh] flex flex-col relative shadow-2xl overscroll-none overflow-hidden outline-none" 
             onClick={e => e.stopPropagation()}
             data-lenis-prevent
           >
             {/* Sticky header with close button */}
             <div className="sticky top-0 z-10 bg-[#F4F1EA] rounded-t-[2rem] px-8 md:px-12 pt-8 pb-4 flex justify-between items-start border-b border-black/10">
               <div>
-                <h3 className="font-display text-3xl md:text-5xl font-bold uppercase">{modalContent.title}</h3>
+                <h3 id="modal-title" className="font-display text-3xl md:text-5xl font-bold uppercase">{modalContent.title}</h3>
                 {modalContent.subtitle && <p className="font-mono text-sm md:text-base opacity-70 mt-3 border-l-2 border-[#DE5D26] pl-4">{modalContent.subtitle}</p>}
               </div>
               <button 
+                type="button"
+                aria-label="Close"
                 className="ml-4 flex-shrink-0 p-2 bg-black/10 rounded-full hover:bg-black/20 transition-colors"
                 onClick={handleCloseModal}
               >
-                <X size={24} />
+                <X size={24} aria-hidden="true" />
               </button>
             </div>
             {/* Scrollable content */}
@@ -277,7 +326,7 @@ export default function App() {
       </div>
 
       <nav className="fixed top-0 w-full p-6 md:p-10 flex justify-end items-center z-40 mix-blend-difference text-[var(--color-marty-bg)] pointer-events-none">
-        <div className="flex gap-6 text-sm font-medium uppercase tracking-widest hidden md:flex pointer-events-auto">
+        <div className="hidden md:flex gap-6 text-sm font-medium uppercase tracking-widest pointer-events-auto">
           <a href="#about-section" onClick={e => handleNavClick(e, "#about-section")} onMouseEnter={handleHoverEnter} onMouseLeave={handleHoverLeave} className="hover:opacity-60 transition-opacity">About</a>
           <a href="#projects-section" onClick={e => handleNavClick(e, "#projects-section")} onMouseEnter={handleHoverEnter} onMouseLeave={handleHoverLeave} className="hover:opacity-60 transition-opacity">Projects</a>
           <a href="#contact-section" onClick={e => handleNavClick(e, "#contact-section")} onMouseEnter={handleHoverEnter} onMouseLeave={handleHoverLeave} className="hover:opacity-60 transition-opacity">Contact</a>
@@ -287,7 +336,7 @@ export default function App() {
       {/* HERO SECTION */}
       <section ref={heroRef} className="h-screen w-full flex flex-col justify-end p-6 md:p-12 pb-24 relative isolate overflow-hidden">
         <div className="w-full max-w-7xl mx-auto flex flex-col justify-end h-full">
-          <div className="hero-subtext opacity-0 translate-y-8 flex flex-col md:flex-row md:items-end justify-between border-t border-current pt-8 w-full font-medium">
+          <div className="hero-subtext flex flex-col md:flex-row md:items-end justify-between border-t border-current pt-8 w-full font-medium">
             <p className="text-lg md:text-2xl font-medium leading-relaxed max-w-3xl mb-8 md:mb-0">
               Computer Science student specializing in building secure data pipelines, containerizing ML deployments, and architecting full-stack solutions.
             </p>
@@ -891,7 +940,7 @@ export default function App() {
             <a href="#" onClick={handleCopyEmail} onMouseEnter={handleHoverEnter} onMouseLeave={handleHoverLeave} className="flex items-center gap-2 font-mono text-xs md:text-sm uppercase tracking-widest hover:opacity-60 transition-opacity">
               <Mail size={18} /> {emailCopied ? "Copied!" : "Email"}
             </a>
-            <a href="https://drive.google.com/file/d/1JqzNXI5kdL-m7uWAQTwLhizCIaUtF-BA/view?usp=sharing" target="_blank" rel="noreferrer" onMouseEnter={handleHoverEnter} onMouseLeave={handleHoverLeave} className="flex items-center gap-2 font-mono text-xs md:text-sm uppercase tracking-widest hover:opacity-60 transition-opacity text-[#DE5D26] bg-black dark:text-black dark:bg-[#F4F1EA] px-4 py-2 rounded-full border border-current">
+            <a href="https://drive.google.com/file/d/1JqzNXI5kdL-m7uWAQTwLhizCIaUtF-BA/view?usp=sharing" target="_blank" rel="noreferrer" onMouseEnter={handleHoverEnter} onMouseLeave={handleHoverLeave} className="flex items-center gap-2 font-mono text-xs md:text-sm uppercase tracking-widest hover:opacity-60 transition-opacity text-[#DE5D26] bg-black px-4 py-2 rounded-full border border-current">
               <FileText size={18} /> Resume
             </a>
           </div>
