@@ -6,3 +6,6 @@ coverage/
 *.log
 .env*
 !.env.example
+
+# Portfolio copy draft, kept local
+\# Sharish SK — Portfolio Content Databas.md
