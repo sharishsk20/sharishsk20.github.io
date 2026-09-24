@@ -38,6 +38,10 @@ jobs:
           cache: 'npm'
       - name: Install dependencies
         run: npm ci
+      # vite builds with esbuild, which strips types without checking them,
+      # so this is the only thing stopping a type error from deploying.
+      - name: Typecheck
+        run: npm run lint
       - name: Build
         run: npm run build
       - name: Setup Pages

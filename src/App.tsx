@@ -18,27 +18,7 @@ export default function App() {
   // Initialize smooth scrolling and cursor
   useEffect(() => {
     const mobile = window.innerWidth < 768;
-
-    const lenis = new Lenis({
-      duration: mobile ? 1.0 : 1.2,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), 
-      orientation: 'vertical',
-      gestureOrientation: 'vertical',
-      smoothWheel: true,
-      wheelMultiplier: 1,
-      touchMultiplier: mobile ? 1.5 : 2,
-      syncTouch: true,
-    });
-    lenisRef.current = lenis;
-
-    lenis.on('scroll', ScrollTrigger.update);
-
-    const raf = (time: number) => {
-      lenis.raf(time * 1000);
-    };
-    gsap.ticker.add(raf);
-
-    gsap.ticker.lagSmoothing(0);
+    const reduceQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
 
     const cursorEl = document.getElementById('custom-cursor');
     const updateCursor = (e: MouseEvent) => {
@@ -53,106 +33,170 @@ export default function App() {
     };
     window.addEventListener('mousemove', updateCursor);
 
-    gsap.set('#dynamic-name', {
-      top: '50%',
-      left: '50%',
-      xPercent: -50,
-      yPercent: -50,
-      fontSize: mobile ? '18vw' : '15vw',
-      transformOrigin: 'center center'
-    });
+    const mm = gsap.matchMedia();
 
-    const tl = gsap.timeline();
-    tl.fromTo('#dynamic-name', { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 1.5, ease: 'power4.out' })
-      .fromTo('.hero-subtext', { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 1, ease: 'power3.out' }, "-=0.8");
+    // Smooth scrolling is the whole problem for motion-sensitive visitors, so
+    // Lenis only exists in the no-preference branch and lenisRef stays null
+    // otherwise. Every caller of lenisRef already uses optional chaining.
+    mm.add('(prefers-reduced-motion: no-preference)', () => {
+      const lenis = new Lenis({
+        duration: mobile ? 1.0 : 1.2,
+        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+        orientation: 'vertical',
+        gestureOrientation: 'vertical',
+        smoothWheel: true,
+        wheelMultiplier: 1,
+        touchMultiplier: mobile ? 1.5 : 2,
+        syncTouch: true,
+      });
+      lenisRef.current = lenis;
 
-    gsap.to('#dynamic-name', {
-      top: mobile ? '24px' : '40px',
-      left: mobile ? '24px' : '40px',
-      xPercent: 0,
-      yPercent: 0,
-      fontSize: mobile ? '1.25rem' : '1.5rem',
-      ease: 'power2.inOut',
-      scrollTrigger: {
-        trigger: heroRef.current,
-        start: 'top top',
-        end: 'bottom top',
-        scrub: true 
-      }
-    });
+      lenis.on('scroll', ScrollTrigger.update);
 
-    // Fade out hero subtext on scroll nicely and allow it to return
-    gsap.fromTo('.hero-subtext', 
-      { opacity: 1, y: 0 },
-      {
-        opacity: 0,
-        y: -50,
-        immediateRender: false,
+      const raf = (time: number) => {
+        lenis.raf(time * 1000);
+      };
+      gsap.ticker.add(raf);
+      gsap.ticker.lagSmoothing(0);
+
+      gsap.set('#dynamic-name', {
+        top: '50%',
+        left: '50%',
+        xPercent: -50,
+        yPercent: -50,
+        fontSize: mobile ? '18vw' : '15vw',
+        transformOrigin: 'center center'
+      });
+
+      const tl = gsap.timeline();
+      tl.fromTo('#dynamic-name', { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 1.5, ease: 'power4.out' })
+        .fromTo('.hero-subtext', { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 1, ease: 'power3.out' }, "-=0.8");
+
+      gsap.to('#dynamic-name', {
+        top: mobile ? '24px' : '40px',
+        left: mobile ? '24px' : '40px',
+        xPercent: 0,
+        yPercent: 0,
+        fontSize: mobile ? '1.25rem' : '1.5rem',
+        ease: 'power2.inOut',
         scrollTrigger: {
           trigger: heroRef.current,
           start: 'top top',
-          end: 'center top',
+          end: 'bottom top',
           scrub: true
         }
+      });
+
+      // Fade out hero subtext on scroll nicely and allow it to return
+      gsap.fromTo('.hero-subtext',
+        { opacity: 1, y: 0 },
+        {
+          opacity: 0,
+          y: -50,
+          immediateRender: false,
+          scrollTrigger: {
+            trigger: heroRef.current,
+            start: 'top top',
+            end: 'center top',
+            scrub: true
+          }
+        }
+      );
+
+      // REVEAL ANIMATIONS
+      const revealElements = document.querySelectorAll('.reveal');
+      revealElements.forEach((el) => {
+        gsap.fromTo(el,
+          { opacity: 0, y: 50 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 1,
+            ease: 'power3.out',
+            scrollTrigger: {
+              trigger: el,
+              start: 'top 90%',
+              toggleActions: 'play none none none'
+            }
+          }
+        );
+      });
+
+      return () => {
+        gsap.ticker.remove(raf);
+        lenis.destroy();
+        lenisRef.current = null;
+      };
+    });
+
+    // Reduced motion: everything lands at its final state. The name sits in
+    // the corner from the start rather than flying there, and nothing moves
+    // on scroll.
+    mm.add('(prefers-reduced-motion: reduce)', () => {
+      gsap.set('#dynamic-name', {
+        top: mobile ? '24px' : '40px',
+        left: mobile ? '24px' : '40px',
+        xPercent: 0,
+        yPercent: 0,
+        fontSize: mobile ? '1.25rem' : '1.5rem',
+        opacity: 1,
+        scale: 1,
+        transformOrigin: 'center center'
+      });
+      gsap.set('.hero-subtext', { opacity: 1, y: 0 });
+      gsap.set('.reveal', { opacity: 1, y: 0 });
+    });
+
+    // Section colour shifts stay in both branches: a cross-fading background
+    // is not vestibular motion, and removing it would gut the design. Under
+    // reduced motion the change is applied instantly instead of tweened.
+    const setTheme = (backgroundColor: string, color: string) => {
+      if (reduceQuery.matches) {
+        gsap.set('body', { backgroundColor, color });
+      } else {
+        gsap.to('body', { backgroundColor, color, duration: 0.6 });
       }
-    );
+    };
 
     ScrollTrigger.create({
       trigger: '#about-section',
       start: 'top 50%',
       end: 'bottom 40%',
-      onEnter: () => gsap.to('body', { backgroundColor: '#1C1B1A', color: '#F4F1EA', duration: 0.6 }),
-      onEnterBack: () => gsap.to('body', { backgroundColor: '#1C1B1A', color: '#F4F1EA', duration: 0.6 }),
-      onLeaveBack: () => gsap.to('body', { backgroundColor: '#F4F1EA', color: '#1C1B1A', duration: 0.6 }),
+      onEnter: () => setTheme('#1C1B1A', '#F4F1EA'),
+      onEnterBack: () => setTheme('#1C1B1A', '#F4F1EA'),
+      onLeaveBack: () => setTheme('#F4F1EA', '#1C1B1A'),
     });
 
     ScrollTrigger.create({
       trigger: '#projects-section',
       start: 'top 60%',
       end: 'bottom 40%',
-      onEnter: () => gsap.to('body', { backgroundColor: '#F4F1EA', color: '#1C1B1A', duration: 0.6 }),
-      onEnterBack: () => gsap.to('body', { backgroundColor: '#F4F1EA', color: '#1C1B1A', duration: 0.6 }),
+      onEnter: () => setTheme('#F4F1EA', '#1C1B1A'),
+      onEnterBack: () => setTheme('#F4F1EA', '#1C1B1A'),
     });
 
     ScrollTrigger.create({
       trigger: '#contact-section',
       start: 'top 70%',
-      onEnter: () => gsap.to('body', { backgroundColor: '#DE5D26', color: '#1C1B1A', duration: 0.6 }),
-      onEnterBack: () => gsap.to('body', { backgroundColor: '#DE5D26', color: '#1C1B1A', duration: 0.6 }),
-    });
-
-    // REVEAL ANIMATIONS
-    const revealElements = document.querySelectorAll('.reveal');
-    revealElements.forEach((el) => {
-      gsap.fromTo(el, 
-        { opacity: 0, y: 50 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 1,
-          ease: 'power3.out',
-          scrollTrigger: {
-            trigger: el,
-            start: 'top 90%',
-            toggleActions: 'play none none none'
-          }
-        }
-      );
+      onEnter: () => setTheme('#DE5D26', '#1C1B1A'),
+      onEnterBack: () => setTheme('#DE5D26', '#1C1B1A'),
     });
 
     document.fonts?.ready.then(() => ScrollTrigger.refresh());
 
     return () => {
-      gsap.ticker.remove(raf);
-      lenis.destroy();
+      mm.revert();
       window.removeEventListener('mousemove', updateCursor);
       ScrollTrigger.getAll().forEach(t => t.kill());
     };
   }, []);
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, target: string) => {
+    // Without Lenis (reduced motion) let the browser do its own jump, which
+    // already honours scroll-behavior. Swallowing the click would go nowhere.
+    if (!lenisRef.current) return;
     e.preventDefault();
-    lenisRef.current?.scrollTo(target, { offset: 0 });
+    lenisRef.current.scrollTo(target, { offset: 0 });
   };
 
   useEffect(() => {
