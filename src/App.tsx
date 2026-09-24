@@ -33,9 +33,10 @@ export default function App() {
 
     lenis.on('scroll', ScrollTrigger.update);
 
-    gsap.ticker.add((time) => {
+    const raf = (time: number) => {
       lenis.raf(time * 1000);
-    });
+    };
+    gsap.ticker.add(raf);
 
     gsap.ticker.lagSmoothing(0);
 
@@ -96,36 +97,6 @@ export default function App() {
       }
     );
 
-    let mm = gsap.matchMedia();
-
-    mm.add("(min-width: 768px)", () => {
-      ScrollTrigger.create({
-        trigger: containerRef.current,
-        start: "top top",
-        end: "bottom bottom",
-        snap: {
-          snapTo: ".snap-element",
-          duration: { min: 0.4, max: 1.0 },
-          delay: 0.1,
-          ease: "power3.inOut"
-        } as any
-      });
-    });
-
-    mm.add("(max-width: 767px)", () => {
-       ScrollTrigger.create({
-        trigger: containerRef.current,
-        start: "top top",
-        end: "bottom bottom",
-        snap: {
-          snapTo: ".snap-element", 
-          duration: { min: 0.2, max: 0.5 },
-          delay: 0.15,
-          ease: "power1.inOut"
-        } as any
-      });
-    });
-
     ScrollTrigger.create({
       trigger: '#about-section',
       start: 'top 50%',
@@ -169,12 +140,29 @@ export default function App() {
       );
     });
 
+    document.fonts?.ready.then(() => ScrollTrigger.refresh());
+
     return () => {
+      gsap.ticker.remove(raf);
       lenis.destroy();
       window.removeEventListener('mousemove', updateCursor);
       ScrollTrigger.getAll().forEach(t => t.kill());
     };
   }, []);
+
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, target: string) => {
+    e.preventDefault();
+    lenisRef.current?.scrollTo(target, { offset: 0 });
+  };
+
+  useEffect(() => {
+    if (!modalContent) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') handleCloseModal();
+    };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [modalContent]);
 
   const handleHoverEnter = () => setCursorVariant('hovering');
   const handleHoverLeave = () => setCursorVariant('default');
@@ -188,7 +176,7 @@ export default function App() {
   const handleCloseModal = () => {
     setModalContent(null);
     lenisRef.current?.start();
-    document.body.style.overflow = 'auto';
+    document.body.style.overflow = '';
   };
 
   const handleCopyEmail = (e: React.MouseEvent) => {
@@ -246,14 +234,14 @@ export default function App() {
 
       <nav className="fixed top-0 w-full p-6 md:p-10 flex justify-end items-center z-40 mix-blend-difference text-[var(--color-marty-bg)] pointer-events-none">
         <div className="flex gap-6 text-sm font-medium uppercase tracking-widest hidden md:flex pointer-events-auto">
-          <a href="#about-section" onMouseEnter={handleHoverEnter} onMouseLeave={handleHoverLeave} className="hover:opacity-60 transition-opacity">About</a>
-          <a href="#projects-section" onMouseEnter={handleHoverEnter} onMouseLeave={handleHoverLeave} className="hover:opacity-60 transition-opacity">Projects</a>
-          <a href="#contact-section" onMouseEnter={handleHoverEnter} onMouseLeave={handleHoverLeave} className="hover:opacity-60 transition-opacity">Contact</a>
+          <a href="#about-section" onClick={e => handleNavClick(e, "#about-section")} onMouseEnter={handleHoverEnter} onMouseLeave={handleHoverLeave} className="hover:opacity-60 transition-opacity">About</a>
+          <a href="#projects-section" onClick={e => handleNavClick(e, "#projects-section")} onMouseEnter={handleHoverEnter} onMouseLeave={handleHoverLeave} className="hover:opacity-60 transition-opacity">Projects</a>
+          <a href="#contact-section" onClick={e => handleNavClick(e, "#contact-section")} onMouseEnter={handleHoverEnter} onMouseLeave={handleHoverLeave} className="hover:opacity-60 transition-opacity">Contact</a>
         </div>
       </nav>
 
       {/* HERO SECTION */}
-      <section ref={heroRef} className="snap-element h-screen w-full flex flex-col justify-end p-6 md:p-12 pb-24 relative isolate overflow-hidden">
+      <section ref={heroRef} className="h-screen w-full flex flex-col justify-end p-6 md:p-12 pb-24 relative isolate overflow-hidden">
         <div className="w-full max-w-7xl mx-auto flex flex-col justify-end h-full">
           <div className="hero-subtext opacity-0 translate-y-8 flex flex-col md:flex-row md:items-end justify-between border-t border-current pt-8 w-full font-medium">
             <p className="text-lg md:text-2xl font-medium leading-relaxed max-w-3xl mb-8 md:mb-0">
@@ -268,7 +256,7 @@ export default function App() {
 
       {/* ABOUT & EXPERTISE */}
       <section id="about-section" className="w-full flex flex-col">
-        <div className="snap-element min-h-[70vh] py-32 px-6 md:px-12 flex flex-col justify-center max-w-7xl mx-auto w-full">
+        <div className="min-h-[70vh] py-32 px-6 md:px-12 flex flex-col justify-center max-w-7xl mx-auto w-full">
           <div className="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-8 w-full">
             <div className="md:col-span-4 reveal">
               <h2 className="font-display text-4xl md:text-6xl font-bold uppercase tracking-tight mb-6 leading-none">Expertise<br/>& Context</h2>
@@ -282,7 +270,7 @@ export default function App() {
                 Passionate about building secure data pipelines, containerizing machine learning deployments, and architecting full-stack solutions for complex, hardware-integrated environments.
               </p>
               <p className="opacity-70 text-lg">
-                My approach to technology is rooted in a lifelong fascination with how complex systems operate and a personal history of competing in high-stakes environments. Having spent years in national-level competitive sports, I developed a disciplined focus and a reliance on instinct that now defines my technical work. I am most effective when navigating challenges that require both meticulous preparation and the ability to adapt—finding the "clutch" solution when the pressure is highest and the margin for error is thin.
+                My approach to technology is rooted in a lifelong fascination with how complex systems operate and a personal history of competing in high-stakes environments. Having spent years in national-level competitive sports, I developed a disciplined focus and a reliance on instinct that now defines my technical work. I am most effective when navigating challenges that require both meticulous preparation and the ability to adapt - finding the "clutch" solution when the pressure is highest and the margin for error is thin.
               </p>
               <p className="opacity-70 text-lg">
                 Beyond the terminal, I'm drawn to anything that prioritizes atmosphere and intricate craft. Whether it's the layered, psychedelic production of modern hip-hop, the visual storytelling of film, or the mechanical discipline of a demanding game, I value experiences that reward patience and a deep understanding of the medium. I don't just participate in these spaces; I study the flow and the mechanics that make them work.
@@ -292,7 +280,7 @@ export default function App() {
         </div>
 
         {/* Work Experience */}
-        <div className="snap-element min-h-[50vh] py-24 px-6 md:px-12 flex flex-col justify-center max-w-7xl mx-auto w-full">
+        <div className="min-h-[50vh] py-24 px-6 md:px-12 flex flex-col justify-center max-w-7xl mx-auto w-full">
           <div className="flex justify-between items-end mb-12 border-b border-current pb-4 reveal">
             <h2 className="font-display text-4xl md:text-6xl font-bold uppercase tracking-tight leading-none">Work<br/>Experience</h2>
             <span className="font-mono text-xs md:text-sm uppercase opacity-80">Professional</span>
@@ -326,7 +314,7 @@ export default function App() {
         </div>
 
         {/* Skills Block */}
-        <div className="snap-element min-h-[50vh] py-24 px-6 md:px-12 flex flex-col justify-center max-w-7xl mx-auto w-full">
+        <div className="min-h-[50vh] py-24 px-6 md:px-12 flex flex-col justify-center max-w-7xl mx-auto w-full">
           <div className="flex justify-between items-end mb-12 border-b border-current pb-4 reveal">
             <h2 className="font-display text-4xl md:text-6xl font-bold uppercase tracking-tight leading-none">Technical<br/>Skills</h2>
             <span className="font-mono text-xs md:text-sm uppercase opacity-80">Core Competencies</span>
@@ -359,9 +347,9 @@ export default function App() {
 
       {/* SELECTED PROJECTS */}
       <section id="projects-section" className="w-full flex flex-col">
-        <div className="snap-element min-h-[40vh] pt-48 pb-16 px-6 md:px-12 max-w-7xl mx-auto w-full flex justify-between items-end reveal">
+        <div className="min-h-[40vh] pt-48 pb-16 px-6 md:px-12 max-w-7xl mx-auto w-full flex justify-between items-end reveal">
           <h2 className="font-display text-5xl md:text-8xl font-bold uppercase tracking-tighter leading-none">Selected<br/>Works</h2>
-          <span className="font-mono text-xs md:text-sm uppercase border-b border-current pb-2 opacity-80">2023 — Present</span>
+          <span className="font-mono text-xs md:text-sm uppercase border-b border-current pb-2 opacity-80">2023 - Present</span>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 border-t-2 border-l-2 border-current max-w-7xl mx-auto w-full">
@@ -377,10 +365,10 @@ export default function App() {
               <div className="space-y-8 opacity-90 leading-relaxed pt-2">
                 <div>
                   <h4 className="font-bold text-xl mb-3 text-[#DE5D26]">1. Edge Auditor & Resource Management</h4>
-                  <p>Deployed the auditor as a containerized microservice on K3s (lightweight Kubernetes) running on a Raspberry Pi — where every MB of RAM counts.</p>
+                  <p>Deployed the auditor as a containerized microservice on K3s (lightweight Kubernetes) running on a Raspberry Pi - where every MB of RAM counts.</p>
                   <ul className="list-disc pl-6 mt-4 space-y-3 marker:text-black/50">
                     <li><strong>Workload Orchestration:</strong> Monitored CPU and RAM usage in real-time to ensure the Random Forest inference process never starved other critical system services running on the same node.</li>
-                    <li><strong>Data Pre-processing at the Edge:</strong> Instead of streaming full packet captures (PCAPs) to the cloud, I extracted key network flow features — duration, protocol type, byte counts — directly on-device, cutting data footprint by over 90%.</li>
+                    <li><strong>Data Pre-processing at the Edge:</strong> Instead of streaming full packet captures (PCAPs) to the cloud, I extracted key network flow features - duration, protocol type, byte counts - directly on-device, cutting data footprint by over 90%.</li>
                   </ul>
                 </div>
                 <div>
@@ -389,14 +377,14 @@ export default function App() {
                   <ul className="list-disc pl-6 mt-4 space-y-3 marker:text-black/50">
                     <li><strong>Model Optimization:</strong> Converted the trained model to a lightweight format to reduce memory overhead on the Pi's ARM architecture.</li>
                     <li><strong>Real-time Detection:</strong> Captured live network traffic using Scapy and fed extracted features into the classifier, which labelled flows as Benign or Malicious (DoS, Port Scan, Brute Force) in milliseconds.</li>
-                    <li><strong>Localized Response:</strong> On detecting a threat, triggered an immediate iptables rule update to block the malicious IP — no cloud round-trip required.</li>
+                    <li><strong>Localized Response:</strong> On detecting a threat, triggered an immediate iptables rule update to block the malicious IP - no cloud round-trip required.</li>
                   </ul>
                 </div>
                 <div>
                   <h4 className="font-bold text-xl mb-3 text-[#DE5D26]">3. Secure Cloud Synchronization</h4>
                   <p>Designed the cloud layer to act as the long-term memory and global dashboard for the system.</p>
                   <ul className="list-disc pl-6 mt-4 space-y-3 marker:text-black/50">
-                    <li><strong>Async Logging:</strong> Synced only alerts and telemetry summaries to the cloud over MQTT with TLS — keeping bandwidth usage minimal and the pipeline secure.</li>
+                    <li><strong>Async Logging:</strong> Synced only alerts and telemetry summaries to the cloud over MQTT with TLS - keeping bandwidth usage minimal and the pipeline secure.</li>
                     <li><strong>Federated Retraining:</strong> Aggregated anonymized edge telemetry periodically to retrain the model in the cloud and push updated weights back to the Pi, enabling the system to adapt to new attack patterns over time.</li>
                   </ul>
                 </div>
@@ -648,7 +636,7 @@ export default function App() {
               <h3 className="font-display text-2xl md:text-3xl font-bold uppercase leading-tight tracking-tight flex items-start gap-3">FaceAuthOffline <ArrowUpRight className="flex-shrink-0 opacity-0 -translate-y-1 -translate-x-1 group-hover:opacity-100 group-hover:translate-y-0 group-hover:translate-x-0 transition-all" /></h3>
             </div>
             <p className="text-base md:text-lg font-medium opacity-80 leading-relaxed flex-grow">
-              An offline-first React Native facial authentication system with geometric liveness detection and on-device recognition — no network required at auth time. Built for Hackathon 7.0.
+              An offline-first React Native facial authentication system with geometric liveness detection and on-device recognition - no network required at auth time. Built for Hackathon 7.0.
             </p>
             <div className="flex flex-wrap gap-2">
               {['React Native', 'TFLite', 'WatermelonDB', 'AWS'].map(t => (
@@ -679,14 +667,14 @@ export default function App() {
                   <p>Implemented two layers of error handling from scratch to guarantee transmission integrity over Bluetooth.</p>
                   <ul className="list-disc pl-6 mt-4 space-y-3 marker:text-black/50">
                     <li><strong>CRC (Cyclic Redundancy Check):</strong> Implemented CRC to detect corrupted packets before they reached the Android receiver, triggering selective retransmission only when necessary.</li>
-                    <li><strong>Hamming Code:</strong> Applied Hamming parity bits for single-bit error correction — automatically fixing bit-flip errors in transit without requiring a retransmit, achieving 99.9% reliability.</li>
+                    <li><strong>Hamming Code:</strong> Applied Hamming parity bits for single-bit error correction - automatically fixing bit-flip errors in transit without requiring a retransmit, achieving 99.9% reliability.</li>
                   </ul>
                 </div>
                 <div>
                   <h4 className="font-bold text-xl mb-3 text-[#DE5D26]">3. Synchronized Bidirectional Communication</h4>
                   <p>Built a tight real-time sync loop between the wearable and the Android companion app.</p>
                   <ul className="list-disc pl-6 mt-4 space-y-3 marker:text-black/50">
-                    <li><strong>Distributed State:</strong> Used DataClient to sync shared objects (goals, thresholds) across both devices — changes on the phone reflected instantly on the watch UI.</li>
+                    <li><strong>Distributed State:</strong> Used DataClient to sync shared objects (goals, thresholds) across both devices - changes on the phone reflected instantly on the watch UI.</li>
                     <li><strong>Kotlin Coroutines & Flow:</strong> Observed the incoming Bluetooth stream using Kotlin Coroutines and Flow, allowing the UI to update reactively without blocking the main thread.</li>
                   </ul>
                 </div>
@@ -731,7 +719,7 @@ export default function App() {
                   <ul className="list-disc pl-6 mt-4 space-y-3 marker:text-black/50">
                     <li><strong>Schema Design:</strong> Designed a normalized MSSQL schema with Primary/Foreign Key constraints and Stored Procedures, eliminating phantom inventory and duplicate entries at the database level.</li>
                     <li><strong>Cloud RDS:</strong> Hosted the database on AWS RDS with automated backups, multi-AZ redundancy, and encrypted storage.</li>
-                    <li><strong>Validation Logic:</strong> Reduced data entry errors by 85% through strict frontend and backend validation — regex for SKUs, enforced dropdowns, and mandatory field checks.</li>
+                    <li><strong>Validation Logic:</strong> Reduced data entry errors by 85% through strict frontend and backend validation - regex for SKUs, enforced dropdowns, and mandatory field checks.</li>
                   </ul>
                 </div>
               </div>
@@ -772,7 +760,7 @@ export default function App() {
                   <h4 className="font-bold text-xl mb-3 text-[#DE5D26]">2. SMAPE-Optimized Training</h4>
                   <p>Chose SMAPE as the evaluation metric to handle the massive price variance across product categories fairly.</p>
                   <ul className="list-disc pl-6 mt-4 space-y-3 marker:text-black/50">
-                    <li><strong>SMAPE:</strong> Optimized for Symmetric Mean Absolute Percentage Error so the model was penalized proportionally — a $10 error on a $15 product is treated as far worse than the same error on a $1,500 laptop.</li>
+                    <li><strong>SMAPE:</strong> Optimized for Symmetric Mean Absolute Percentage Error so the model was penalized proportionally - a $10 error on a $15 product is treated as far worse than the same error on a $1,500 laptop.</li>
                     <li><strong>Log Transformation:</strong> Applied log(y) to the target price variable to stabilize variance and improve regression convergence across heavily skewed pricing distributions.</li>
                   </ul>
                 </div>
@@ -816,7 +804,7 @@ export default function App() {
       </section>
 
       {/* FOOTER / CONTACT */}
-      <section id="contact-section" className="snap-element min-h-[90vh] w-full flex flex-col justify-between py-24 px-6 md:px-12 relative overflow-hidden">
+      <section id="contact-section" className="min-h-[90vh] w-full flex flex-col justify-between py-24 px-6 md:px-12 relative overflow-hidden">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full text-center pointer-events-none opacity-5">
           <h2 className="font-display text-[20vw] font-bold uppercase leading-none tracking-tighter">BUILD</h2>
         </div>
@@ -859,7 +847,7 @@ export default function App() {
             <a href="#" onClick={handleCopyEmail} onMouseEnter={handleHoverEnter} onMouseLeave={handleHoverLeave} className="flex items-center gap-2 font-mono text-xs md:text-sm uppercase tracking-widest hover:opacity-60 transition-opacity">
               <Mail size={18} /> {emailCopied ? "Copied!" : "Email"}
             </a>
-            <a href="https://drive.google.com/file/d/1Xb6j7v5sXFm8dSC7gpfRK1mSCj8byqZS/view?usp=sharing" target="_blank" rel="noreferrer" onMouseEnter={handleHoverEnter} onMouseLeave={handleHoverLeave} className="flex items-center gap-2 font-mono text-xs md:text-sm uppercase tracking-widest hover:opacity-60 transition-opacity text-[#DE5D26] bg-black dark:text-black dark:bg-[#F4F1EA] px-4 py-2 rounded-full border border-current">
+            <a href="https://drive.google.com/file/d/1JqzNXI5kdL-m7uWAQTwLhizCIaUtF-BA/view?usp=sharing" target="_blank" rel="noreferrer" onMouseEnter={handleHoverEnter} onMouseLeave={handleHoverLeave} className="flex items-center gap-2 font-mono text-xs md:text-sm uppercase tracking-widest hover:opacity-60 transition-opacity text-[#DE5D26] bg-black dark:text-black dark:bg-[#F4F1EA] px-4 py-2 rounded-full border border-current">
               <FileText size={18} /> Resume
             </a>
           </div>

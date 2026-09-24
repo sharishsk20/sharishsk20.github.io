@@ -18,11 +18,14 @@ body {
   background-color: var(--color-marty-bg);
   color: var(--color-marty-ink);
   overflow-x: hidden;
-  cursor: none; /* Hide default cursor for custom cursor */
 }
 
-a, button {
-  cursor: none;
+/* The custom cursor element is md-and-up only, so only hide the real one there
+   - below 768px this left no visible pointer at all on a desktop browser. */
+@media (min-width: 768px) and (hover: hover) {
+  body, a, button {
+    cursor: none;
+  }
 }
 
 /* Typography styles */
@@ -71,24 +74,6 @@ html.lenis, html.lenis body {
   width: 60px;
   height: 60px;
   background-color: var(--color-marty-yellow);
-}
-
-.custom-cursor.hovering-project {
-  width: 80px;
-  height: 80px;
-  background-color: white;
-  mix-blend-mode: normal;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.custom-cursor.hovering-project::after {
-  content: "VIEW";
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 12px;
-  font-weight: 700;
-  color: var(--color-marty-ink);
 }
 
 /* Utility for Text Reveal */
